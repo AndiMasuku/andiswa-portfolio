@@ -21,6 +21,7 @@ const Navigation = () => {
   };
 
   const navLinks = [
+    { href: "/projects", label: "Projects", isRoute: true },
     { href: "#research", label: "Research" },
     { href: "#education", label: "Education" },
     { href: "#skills", label: "Skills" },
@@ -49,13 +50,23 @@ const Navigation = () => {
         {/* Desktop Navigation */}
         <div className="hidden md:flex items-center gap-10">
           {navLinks.map((link) => (
-            <a
-              key={link.href}
-              href={link.href}
-              className="text-sm font-medium text-foreground/70 hover:text-primary transition-colors duration-300 tracking-wide"
-            >
-              {link.label}
-            </a>
+            link.isRoute ? (
+              <a
+                key={link.href}
+                href={link.href}
+                className="text-sm font-medium text-foreground/70 hover:text-primary transition-colors duration-300 tracking-wide"
+              >
+                {link.label}
+              </a>
+            ) : (
+              <a
+                key={link.href}
+                href={link.href}
+                className="text-sm font-medium text-foreground/70 hover:text-primary transition-colors duration-300 tracking-wide"
+              >
+                {link.label}
+              </a>
+            )
           ))}
           <a
             href="https://www.linkedin.com/in/andiswa-masuku"
