@@ -9,11 +9,22 @@ interface Project {
   year: string;
   location: string;
   methods: string[];
-  image: string;
+  video?: string;
+  image?: string;
   category: string;
 }
 
 const projects: Project[] = [
+  {
+    id: "mopane-worm",
+    title: "Mopane Worm Harvesting Research",
+    description: "Documenting traditional mopane worm harvesting practices in Limpopo province. This research explores the cultural significance and sustainable harvesting methods of this important indigenous food source.",
+    year: "2024",
+    location: "Limpopo, South Africa",
+    methods: ["Field Research", "Cultural Documentation", "Sustainability Assessment"],
+    video: "/videos/mopane-worm-harvesting.mp4",
+    category: "Indigenous Foods"
+  },
   {
     id: "insect-protein",
     title: "Insect Protein Fortification",
@@ -21,7 +32,7 @@ const projects: Project[] = [
     year: "2024",
     location: "University of KwaZulu-Natal",
     methods: ["Sensory Analysis", "Nutritional Profiling", "Consumer Studies"],
-    image: "/placeholder.svg",
+    video: "/videos/project-1.mp4",
     category: "Food Science"
   },
   {
@@ -31,18 +42,8 @@ const projects: Project[] = [
     year: "2023",
     location: "Durban, South Africa",
     methods: ["HACCP Analysis", "Microbiological Testing", "Quality Auditing"],
-    image: "/placeholder.svg",
+    video: "/videos/project-2.mp4",
     category: "Food Safety"
-  },
-  {
-    id: "fermentation",
-    title: "Traditional Fermentation Optimization",
-    description: "Optimizing traditional fermentation processes for improved nutritional outcomes while preserving cultural authenticity and flavor profiles.",
-    year: "2023",
-    location: "KwaZulu-Natal",
-    methods: ["Fermentation Science", "Sensory Evaluation", "Nutritional Analysis"],
-    image: "/placeholder.svg",
-    category: "Food Technology"
   },
   {
     id: "sustainability",
@@ -108,13 +109,28 @@ const Projects = () => {
                 transition={{ duration: 0.5, delay: index * 0.1 }}
                 className="group bg-card border border-border rounded-2xl overflow-hidden hover:border-primary/30 transition-all duration-300"
               >
-                {/* Project Image */}
+                {/* Project Media */}
                 <div className="aspect-[16/10] bg-secondary/50 overflow-hidden">
-                  <img
-                    src={project.image}
-                    alt={project.title}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                  />
+                  {project.video ? (
+                    <video
+                      src={project.video}
+                      className="w-full h-full object-cover"
+                      muted
+                      loop
+                      playsInline
+                      onMouseEnter={(e) => e.currentTarget.play()}
+                      onMouseLeave={(e) => {
+                        e.currentTarget.pause();
+                        e.currentTarget.currentTime = 0;
+                      }}
+                    />
+                  ) : (
+                    <img
+                      src={project.image}
+                      alt={project.title}
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                    />
+                  )}
                 </div>
 
                 {/* Project Content */}
