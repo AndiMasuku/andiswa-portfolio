@@ -14,17 +14,25 @@ interface Project {
   category: string;
 }
 
-const projects: Project[] = [
+const researchVideos = [
   {
     id: "mopane-worm",
-    title: "Mopane Worm Harvesting Research",
-    description: "Documenting traditional mopane worm harvesting practices in Limpopo province. This research explores the cultural significance and sustainable harvesting methods of this important indigenous food source.",
-    year: "2024",
-    location: "Limpopo, South Africa",
-    methods: ["Field Research", "Cultural Documentation", "Sustainability Assessment"],
+    title: "Mopane Worm Harvesting",
     video: "/videos/mopane-worm-harvesting.mp4",
-    category: "Indigenous Foods"
   },
+  {
+    id: "insect-protein",
+    title: "Insect Protein Research",
+    video: "/videos/project-1.mp4",
+  },
+  {
+    id: "food-safety",
+    title: "Food Safety Studies",
+    video: "/videos/project-2.mp4",
+  },
+];
+
+const projects: Project[] = [
   {
     id: "insect-protein",
     title: "Insect Protein Fortification",
@@ -32,7 +40,7 @@ const projects: Project[] = [
     year: "2024",
     location: "University of KwaZulu-Natal",
     methods: ["Sensory Analysis", "Nutritional Profiling", "Consumer Studies"],
-    video: "/videos/project-1.mp4",
+    image: "/placeholder.svg",
     category: "Food Science"
   },
   {
@@ -42,7 +50,7 @@ const projects: Project[] = [
     year: "2023",
     location: "Durban, South Africa",
     methods: ["HACCP Analysis", "Microbiological Testing", "Quality Auditing"],
-    video: "/videos/project-2.mp4",
+    image: "/placeholder.svg",
     category: "Food Safety"
   },
   {
@@ -99,7 +107,53 @@ const Projects = () => {
             </p>
           </motion.div>
 
+          {/* Research Videos Section */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="mb-16"
+          >
+            <h2 className="font-display text-2xl md:text-3xl font-semibold text-primary mb-6">
+              Research Videos
+            </h2>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              {researchVideos.map((item, index) => (
+                <motion.div
+                  key={item.id}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: 0.3 + index * 0.1 }}
+                  className="group relative rounded-2xl overflow-hidden bg-card border border-border hover:border-primary/30 transition-all duration-300"
+                >
+                  <div className="aspect-video bg-secondary/50 overflow-hidden">
+                    <video
+                      src={item.video}
+                      className="w-full h-full object-cover"
+                      muted
+                      loop
+                      playsInline
+                      onMouseEnter={(e) => e.currentTarget.play()}
+                      onMouseLeave={(e) => {
+                        e.currentTarget.pause();
+                        e.currentTarget.currentTime = 0;
+                      }}
+                    />
+                  </div>
+                  <div className="p-4">
+                    <h3 className="font-display text-lg font-medium text-primary">
+                      {item.title}
+                    </h3>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          </motion.div>
+
           {/* Projects Grid */}
+          <h2 className="font-display text-2xl md:text-3xl font-semibold text-primary mb-6">
+            Research Projects
+          </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {projects.map((project, index) => (
               <motion.article
