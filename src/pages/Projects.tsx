@@ -22,16 +22,19 @@ const researchVideos = [
     id: "mopane-worm",
     title: "Mopane Worm Harvesting",
     video: "/videos/mopane-worm-harvesting.mp4",
+    description: "Traditional harvesting of mopane worms (Gonimbrasia belina)—one of the indigenous edible insects central to my Honours research. Understanding these harvesting practices informed my thesis on incorporating culturally significant protein sources into bread fortification. Mopane worms are a staple in Southern African diets, providing sustainable protein aligned with regional food traditions.",
   },
   {
     id: "insect-protein",
     title: "Insect Protein Research",
     video: "/videos/project-1.mp4",
+    description: "Insect-based products entering mainstream markets—the real-world application of research like mine. My thesis work on bread fortification with termites and mopane worms contributes to this growing field, developing affordable food solutions backed by scientific analysis of texture, color, and nutritional properties.",
   },
   {
     id: "food-safety",
     title: "Food Safety Studies",
     video: "/videos/project-2.mp4",
+    description: "Food safety and consumer acceptance are critical to mainstreaming insect-based nutrition. My laboratory work included Texture Profile Analysis, Colourimetry, and Crumb Structure Analysis—all essential for ensuring fortified bread meets quality standards and educating consumers about the benefits of entomophagy.",
   },
 ];
 
@@ -40,16 +43,19 @@ const fieldworkMedia = [
     id: "fieldwork-1",
     title: "Field Research Documentation",
     video: "/videos/fieldwork-1.mp4",
+    description: "Limpopo field study at Wits, conducting People and Conservation research. Walking transects through communities bordering game reserves, I documented natural resource usage patterns and waste disposal practices to inform land management strategies for conservation areas.",
   },
   {
     id: "fieldwork-2",
     title: "Community Engagement",
     video: "/videos/fieldwork-2.mp4",
+    description: "Conservation fieldwork requires understanding both ecosystems and the communities that depend on them. Johannesburg stream ecosystem assessments involved collecting water samples and testing pH levels to evaluate aquatic ecosystem health in urban-adjacent waterways.",
   },
   {
     id: "community-map",
     title: "Community Resource Mapping",
     image: "/images/community-map.jpeg",
+    description: "Resource mapping was a key methodology in my Limpopo conservation research. By documenting where communities collect firewood, water, and food resources, I helped create baseline data for sustainable land management—bridging scientific research with community knowledge.",
   },
 ];
 
@@ -58,16 +64,19 @@ const terrestrialMedia = [
     id: "terrestrial-1",
     title: "Field Data Collection",
     video: "/videos/marine-research-1.mp4",
+    description: "Hands-on specimen collection is foundational to ecological research. During my BSc at Wits, I developed proficiency in wildlife capture and surveying techniques for rodents, birds, and fish—honing skills in species identification and careful handling for population monitoring studies.",
   },
   {
     id: "terrestrial-2",
     title: "Wildlife Monitoring",
     video: "/videos/marine-research-2.mp4",
+    description: "Botanical observation complements my zoological training. Understanding plant-animal interactions is essential in Ecology & Conservation—developing biodiversity assessment skills including species identification and documentation of ecological relationships in South African biomes.",
   },
   {
     id: "river-research",
     title: "Ecosystem Assessment",
     image: "/images/river-research.jpeg",
+    description: "Aquatic ecosystem assessment during my Johannesburg stream study—wading into waterways to collect samples and organisms, testing water quality parameters to evaluate ecosystem health. This hands-on approach developed my practical skills in field-based environmental monitoring.",
   },
 ];
 
@@ -183,6 +192,9 @@ const Projects = () => {
                     <h3 className="font-display text-lg font-medium text-primary">
                       {item.title}
                     </h3>
+                    <p className="text-sm text-muted-foreground mt-2 leading-relaxed">
+                      {item.description}
+                    </p>
                   </div>
                 </motion.div>
               ))}
@@ -234,6 +246,9 @@ const Projects = () => {
                     <h3 className="font-display text-lg font-medium text-primary">
                       {item.title}
                     </h3>
+                    <p className="text-sm text-muted-foreground mt-2 leading-relaxed">
+                      {item.description}
+                    </p>
                   </div>
                 </motion.div>
               ))}
@@ -285,6 +300,9 @@ const Projects = () => {
                     <h3 className="font-display text-lg font-medium text-primary">
                       {item.title}
                     </h3>
+                    <p className="text-sm text-muted-foreground mt-2 leading-relaxed">
+                      {item.description}
+                    </p>
                   </div>
                 </motion.div>
               ))}
