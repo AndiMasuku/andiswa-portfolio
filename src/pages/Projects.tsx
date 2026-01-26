@@ -50,20 +50,20 @@ const fieldworkMedia = [
   },
 ];
 
-const marineResearchMedia = [
+const terrestrialMedia = [
   {
-    id: "marine-1",
-    title: "Marine Bio Research",
+    id: "terrestrial-1",
+    title: "Field Data Collection",
     video: "/videos/marine-research-1.mp4",
   },
   {
-    id: "marine-2",
-    title: "Aquatic Studies",
+    id: "terrestrial-2",
+    title: "Wildlife Monitoring",
     video: "/videos/marine-research-2.mp4",
   },
   {
     id: "river-research",
-    title: "River Ecosystem Research",
+    title: "Ecosystem Assessment",
     image: "/images/river-research.jpeg",
   },
 ];
@@ -237,7 +237,7 @@ const Projects = () => {
             </div>
           </motion.div>
 
-          {/* Marine Research Section */}
+          {/* Terrestrial Field Experience Section */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -245,10 +245,10 @@ const Projects = () => {
             className="mb-16"
           >
             <h2 className="font-display text-2xl md:text-3xl font-semibold text-primary mb-6">
-              Marine & Aquatic Research
+              Terrestrial Field Experience
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              {marineResearchMedia.map((item, index) => (
+              {terrestrialMedia.map((item, index) => (
                 <motion.div
                   key={item.id}
                   initial={{ opacity: 0, y: 20 }}
