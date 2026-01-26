@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import { Sheet, SheetContent, SheetTrigger, SheetTitle, SheetDescription } from "@/components/ui/sheet";
 import { Menu, Linkedin } from "lucide-react";
 import * as VisuallyHidden from "@radix-ui/react-visually-hidden";
@@ -51,13 +52,13 @@ const Navigation = () => {
         <div className="hidden md:flex items-center gap-10">
           {navLinks.map((link) => (
             link.isRoute ? (
-              <a
+              <Link
                 key={link.href}
-                href={link.href}
+                to={link.href}
                 className="text-sm font-medium text-foreground/70 hover:text-primary transition-colors duration-300 tracking-wide"
               >
                 {link.label}
-              </a>
+              </Link>
             ) : (
               <a
                 key={link.href}
@@ -99,19 +100,36 @@ const Navigation = () => {
 
               <div className="flex flex-col h-full pt-8">
                 <nav className="flex flex-col gap-6">
-                  {navLinks.map((link, index) => (
-                    <motion.a
-                      key={link.href}
-                      href={link.href}
-                      onClick={handleLinkClick}
-                      initial={{ opacity: 0, x: 20 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      transition={{ delay: index * 0.05, duration: 0.3 }}
-                      className="font-display text-3xl text-primary hover:opacity-70 transition-opacity"
-                    >
-                      {link.label}
-                    </motion.a>
-                  ))}
+                  {navLinks.map((link, index) =>
+                    link.isRoute ? (
+                      <motion.div
+                        key={link.href}
+                        initial={{ opacity: 0, x: 20 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ delay: index * 0.05, duration: 0.3 }}
+                      >
+                        <Link
+                          to={link.href}
+                          onClick={handleLinkClick}
+                          className="font-display text-3xl text-primary hover:opacity-70 transition-opacity"
+                        >
+                          {link.label}
+                        </Link>
+                      </motion.div>
+                    ) : (
+                      <motion.a
+                        key={link.href}
+                        href={link.href}
+                        onClick={handleLinkClick}
+                        initial={{ opacity: 0, x: 20 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ delay: index * 0.05, duration: 0.3 }}
+                        className="font-display text-3xl text-primary hover:opacity-70 transition-opacity"
+                      >
+                        {link.label}
+                      </motion.a>
+                    )
+                  )}
                 </nav>
 
                 <div className="mt-auto pt-12 border-t border-border/50">
