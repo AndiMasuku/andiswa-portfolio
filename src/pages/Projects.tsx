@@ -50,6 +50,24 @@ const fieldworkMedia = [
   },
 ];
 
+const marineResearchMedia = [
+  {
+    id: "marine-1",
+    title: "Marine Bio Research",
+    video: "/videos/marine-research-1.mp4",
+  },
+  {
+    id: "marine-2",
+    title: "Aquatic Studies",
+    video: "/videos/marine-research-2.mp4",
+  },
+  {
+    id: "river-research",
+    title: "River Ecosystem Research",
+    image: "/images/river-research.jpeg",
+  },
+];
+
 const projects: Project[] = [
   {
     id: "insect-protein",
@@ -185,6 +203,57 @@ const Projects = () => {
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.5, delay: 0.4 + index * 0.1 }}
+                  className="group relative rounded-2xl overflow-hidden bg-card border border-border hover:border-primary/30 transition-all duration-300"
+                >
+                  <div className="aspect-video bg-secondary/50 overflow-hidden">
+                    {item.video ? (
+                      <video
+                        src={item.video}
+                        className="w-full h-full object-cover"
+                        muted
+                        loop
+                        playsInline
+                        onMouseEnter={(e) => e.currentTarget.play()}
+                        onMouseLeave={(e) => {
+                          e.currentTarget.pause();
+                          e.currentTarget.currentTime = 0;
+                        }}
+                      />
+                    ) : (
+                      <img
+                        src={item.image}
+                        alt={item.title}
+                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                      />
+                    )}
+                  </div>
+                  <div className="p-4">
+                    <h3 className="font-display text-lg font-medium text-primary">
+                      {item.title}
+                    </h3>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          </motion.div>
+
+          {/* Marine Research Section */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.4 }}
+            className="mb-16"
+          >
+            <h2 className="font-display text-2xl md:text-3xl font-semibold text-primary mb-6">
+              Marine & Aquatic Research
+            </h2>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              {marineResearchMedia.map((item, index) => (
+                <motion.div
+                  key={item.id}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: 0.5 + index * 0.1 }}
                   className="group relative rounded-2xl overflow-hidden bg-card border border-border hover:border-primary/30 transition-all duration-300"
                 >
                   <div className="aspect-video bg-secondary/50 overflow-hidden">
