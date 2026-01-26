@@ -1,6 +1,9 @@
 import { motion } from "framer-motion";
 import { ArrowLeft, Calendar, MapPin } from "lucide-react";
 import { Link } from "react-router-dom";
+import insectProteinImage from "@/assets/project-insect-protein.jpg";
+import foodSafetyImage from "@/assets/project-food-safety.jpg";
+import sustainabilityImage from "@/assets/project-sustainability.jpg";
 
 interface Project {
   id: string;
@@ -76,7 +79,7 @@ const projects: Project[] = [
     year: "2024",
     location: "University of KwaZulu-Natal",
     methods: ["Sensory Analysis", "Nutritional Profiling", "Consumer Studies"],
-    image: "/placeholder.svg",
+    image: insectProteinImage,
     category: "Food Science"
   },
   {
@@ -86,7 +89,7 @@ const projects: Project[] = [
     year: "2023",
     location: "Durban, South Africa",
     methods: ["HACCP Analysis", "Microbiological Testing", "Quality Auditing"],
-    image: "/placeholder.svg",
+    image: foodSafetyImage,
     category: "Food Safety"
   },
   {
@@ -96,7 +99,7 @@ const projects: Project[] = [
     year: "2022",
     location: "South Africa",
     methods: ["Environmental Impact Assessment", "Community Research", "Data Analysis"],
-    image: "/placeholder.svg",
+    image: sustainabilityImage,
     category: "Sustainability"
   }
 ];
