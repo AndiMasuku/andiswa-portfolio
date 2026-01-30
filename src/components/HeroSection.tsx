@@ -5,7 +5,6 @@ import andiswaPortrait from "@/assets/andiswa-hero.png";
 const HeroSection = () => {
   return (
     <section className="relative min-h-screen flex flex-col lg:block overflow-hidden bg-background">
-      {/* Mobile Layout: Image Background */}
       <div className="lg:hidden absolute inset-0 z-0">
         <img
           src={andiswaPortrait}
@@ -18,7 +17,6 @@ const HeroSection = () => {
       <div className="max-w-[1400px] mx-auto px-6 md:px-12 h-full relative z-10 flex flex-col justify-end lg:justify-center min-h-screen pb-16 lg:pb-0 pt-24 lg:pt-0">
         <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-12 lg:gap-20">
 
-          {/* Text Content */}
           <div className="lg:w-[55%] order-2 lg:order-1 space-y-8 mt-auto lg:mt-0">
 
             <motion.div
@@ -105,7 +103,6 @@ const HeroSection = () => {
             </motion.div>
           </div>
 
-          {/* Desktop Image */}
           <motion.div
             initial={{ opacity: 0, scale: 0.98 }}
             animate={{ opacity: 1, scale: 1 }}
@@ -123,7 +120,6 @@ const HeroSection = () => {
         </div>
       </div>
 
-      {/* Scroll indicator - desktop only */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}

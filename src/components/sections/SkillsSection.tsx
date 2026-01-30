@@ -28,7 +28,6 @@ const SkillsSection = () => {
     return (
         <section id="skills" className="py-20 md:py-28 px-6 md:px-12">
             <div className="max-w-[1400px] mx-auto">
-                {/* Section Header */}
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
@@ -40,7 +39,6 @@ const SkillsSection = () => {
                     <h2 className="font-display text-3xl md:text-4xl text-primary mt-3">What I Can Do</h2>
                 </motion.div>
 
-                {/* Skills Grid */}
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
                     {skillCategories.map((category, index) => (
                         <motion.div

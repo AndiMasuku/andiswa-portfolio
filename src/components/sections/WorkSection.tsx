@@ -50,7 +50,6 @@ const WorkSection = () => {
     return (
         <section id="work" className="py-20 md:py-28 px-6 md:px-12 bg-secondary/30">
             <div className="max-w-[1400px] mx-auto">
-                {/* Section Header */}
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
@@ -65,7 +64,6 @@ const WorkSection = () => {
                     </p>
                 </motion.div>
 
-                {/* Cards Grid */}
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
                     {workData.map((item, index) => (
                         <motion.div
@@ -95,7 +93,6 @@ const WorkSection = () => {
                 </div>
             </div>
 
-            {/* Detail Modal */}
             <Dialog open={!!selectedItem} onOpenChange={() => setSelectedItem(null)}>
                 <DialogContent className="max-w-md p-8 bg-background border-border/50 rounded-2xl">
                     {selectedItem && (

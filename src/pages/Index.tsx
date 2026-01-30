@@ -13,20 +13,11 @@ const Index = () => {
       <CustomCursor />
       <Navigation />
       <main>
-        {/* Above the fold: Who + What they research */}
         <HeroSection />
-
-        {/* Key selling point: The thesis */}
         <ThesisSection />
-
-        {/* Credentials: Education + Skills combined flow */}
         <EducationSection />
         <SkillsSection />
-
-        {/* Supporting info: Work shows character */}
         <WorkSection />
-
-        {/* CTA: Contact */}
         <FooterSection />
       </main>
     </div>

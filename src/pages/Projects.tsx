@@ -1,9 +1,8 @@
 import { motion } from "framer-motion";
-import { ArrowLeft, ArrowRight, GraduationCap, MapPin, Droplets, Users, Anchor, Navigation } from "lucide-react";
+import { ArrowLeft, MapPin, Droplets, Users, Anchor, Navigation } from "lucide-react";
 import { Link } from "react-router-dom";
 
 // Import images
-import thesisImage from "@/assets/thesis-research.png";
 import ladumaTracking from "@/assets/laduma-tracking.png";
 import marineConservation from "@/assets/marine-conservation.png";
 import dnaForensics from "@/assets/dna-forensics.png";
@@ -12,7 +11,6 @@ import labDemonstrator from "@/assets/lab-demonstrator.png";
 import communityMap from "/images/community-map.jpeg";
 import riverResearch from "/images/river-research.png";
 
-// Fieldwork Projects from Wits & UKZN
 const fieldworkProjects = [
   {
     id: "limpopo",
@@ -43,7 +41,6 @@ const fieldworkProjects = [
   },
 ];
 
-// Research Areas from Coursework
 const researchAreas = [
   {
     id: "marine",
@@ -84,7 +81,6 @@ const researchAreas = [
 const Projects = () => {
   return (
     <div className="min-h-screen bg-background">
-      {/* Header */}
       <motion.header
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
@@ -104,10 +100,8 @@ const Projects = () => {
         </div>
       </motion.header>
 
-      {/* Main Content */}
       <main className="pt-32 pb-24 px-6 md:px-12">
         <div className="max-w-[1400px] mx-auto">
-          {/* Page Title */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -116,7 +110,7 @@ const Projects = () => {
           >
             <span className="label-spec text-accent block mb-4">Academic Journey</span>
             <h1 className="font-display text-4xl md:text-6xl font-semibold gradient-text mb-4">
-              Research & Projects
+              Projects
             </h1>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
               A tour through my academic work at <span className="text-accent font-medium">Wits</span> and{" "}
@@ -124,55 +118,7 @@ const Projects = () => {
             </p>
           </motion.div>
 
-          {/* Featured: Honours Research */}
-          <motion.section
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.2 }}
-            className="mb-20"
-          >
-            <div className="flex items-center gap-3 mb-6">
-              <GraduationCap size={24} className="text-accent" />
-              <h2 className="font-display text-2xl md:text-3xl font-semibold text-primary">
-                Featured Research
-              </h2>
-            </div>
 
-            <Link to="/projects/thesis" className="block group">
-              <div className="card-professional overflow-hidden">
-                <div className="grid md:grid-cols-2 gap-0">
-                  <div className="aspect-video md:aspect-auto overflow-hidden">
-                    <img
-                      src={thesisImage}
-                      alt="Insect Protein Research"
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                    />
-                  </div>
-                  <div className="p-8 md:p-12 flex flex-col justify-center">
-                    <span className="label-spec text-accent mb-3">Honours Thesis • UKZN 2025</span>
-                    <h3 className="font-display text-2xl md:text-3xl text-primary mb-4">
-                      Insect Protein Fortification
-                    </h3>
-                    <p className="text-muted-foreground mb-6 leading-relaxed">
-                      Investigating the viability of indigenous edible insects for bread fortification
-                      to combat Protein-Energy Malnutrition in Southern Africa.
-                    </p>
-                    <div className="flex flex-wrap gap-2 mb-6">
-                      {["Food Security", "Nutrition Science", "R Programming"].map((tag) => (
-                        <span key={tag} className="skill-tag text-xs">{tag}</span>
-                      ))}
-                    </div>
-                    <div className="flex items-center gap-2 text-accent font-medium group-hover:gap-3 transition-all">
-                      View Full Research Tour
-                      <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </Link>
-          </motion.section>
-
-          {/* Fieldwork Projects */}
           <motion.section
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -223,7 +169,6 @@ const Projects = () => {
             </div>
           </motion.section>
 
-          {/* Research Areas & Experience */}
           <motion.section
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -271,7 +216,6 @@ const Projects = () => {
         </div>
       </main>
 
-      {/* Footer */}
       <footer className="border-t border-border py-8 px-6 md:px-12">
         <div className="max-w-[1400px] mx-auto flex justify-between items-center text-sm text-muted-foreground">
           <span>© 2026 Andiswa Masuku</span>

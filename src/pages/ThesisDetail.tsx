@@ -57,7 +57,6 @@ const ThesisDetail = () => {
 
     return (
         <div className="min-h-screen bg-background">
-            {/* Header */}
             <motion.header
                 initial={{ opacity: 0, y: -20 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -66,18 +65,17 @@ const ThesisDetail = () => {
             >
                 <div className="max-w-[1400px] mx-auto px-6 md:px-12 flex items-center justify-between">
                     <Link
-                        to="/projects"
+                        to="/"
                         className="flex items-center gap-2 text-muted-foreground hover:text-accent transition-colors"
                     >
                         <ArrowLeft size={20} strokeWidth={1.5} />
-                        <span className="text-sm font-medium">Back to Projects</span>
+                        <span className="text-sm font-medium">Back to Home</span>
                     </Link>
                     <span className="font-display text-2xl font-semibold gradient-text">Honours Research</span>
                     <div className="w-24" />
                 </div>
             </motion.header>
 
-            {/* Hero Section */}
             <section className="pt-32 pb-16 px-6 md:px-12">
                 <div className="max-w-[1400px] mx-auto">
                     <motion.div
@@ -116,7 +114,6 @@ const ThesisDetail = () => {
                 </div>
             </section>
 
-            {/* Edible Insects Visual Section */}
             <section className="py-8 px-6 md:px-12">
                 <div className="max-w-[1000px] mx-auto">
                     <motion.div
@@ -130,7 +127,6 @@ const ThesisDetail = () => {
                 </div>
             </section>
 
-            {/* The Problem Section */}
             <section className="py-16 px-6 md:px-12 section-gradient">
                 <div className="max-w-[1000px] mx-auto">
                     <motion.div
@@ -162,7 +158,6 @@ const ThesisDetail = () => {
                 </div>
             </section>
 
-            {/* The Solution Section */}
             <section className="py-16 px-6 md:px-12">
                 <div className="max-w-[1000px] mx-auto">
                     <motion.div
@@ -194,7 +189,6 @@ const ThesisDetail = () => {
                 </div>
             </section>
 
-            {/* Methodology Section with Images */}
             <section className="py-16 px-6 md:px-12 section-gradient-reverse">
                 <div className="max-w-[1400px] mx-auto">
                     <motion.div
@@ -214,7 +208,6 @@ const ThesisDetail = () => {
                         </p>
                     </motion.div>
 
-                    {/* Large methodology images */}
                     <div className="grid md:grid-cols-2 gap-8 mb-12">
                         <motion.div
                             initial={{ opacity: 0, y: 20 }}
@@ -243,7 +236,6 @@ const ThesisDetail = () => {
                         </motion.div>
                     </div>
 
-                    {/* Smaller methodology cards */}
                     <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
                         {methodologies.map((method, index) => (
                             <motion.div
@@ -265,7 +257,6 @@ const ThesisDetail = () => {
                 </div>
             </section>
 
-            {/* Key Findings - Focus on Significance */}
             <section className="py-16 px-6 md:px-12">
                 <div className="max-w-[1200px] mx-auto">
                     <motion.div
@@ -282,7 +273,6 @@ const ThesisDetail = () => {
                         </h2>
                     </motion.div>
 
-                    {/* Primary Finding */}
                     <motion.div
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
@@ -306,7 +296,6 @@ const ThesisDetail = () => {
                         </div>
                     </motion.div>
 
-                    {/* Why This Matters */}
                     <motion.div
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
@@ -344,7 +333,6 @@ const ThesisDetail = () => {
                 </div>
             </section>
 
-            {/* Footer */}
             <footer className="border-t border-border py-8 px-6 md:px-12">
                 <div className="max-w-[1400px] mx-auto flex justify-between items-center text-sm text-muted-foreground">
                     <span>© 2026 Andiswa Masuku</span>
