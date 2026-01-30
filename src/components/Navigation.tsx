@@ -21,11 +21,11 @@ const Navigation = () => {
   };
 
   const navLinks = [
-    { href: "#research", label: "Projects & Research" },
-    { href: "#education", label: "Education" },
-    { href: "#skills", label: "Skills" },
-    { href: "#work", label: "Experience" },
-    { href: "#contact", label: "Contact" },
+    { href: "/#research", label: "Projects & Research" },
+    { href: "/#education", label: "Education" },
+    { href: "/#skills", label: "Skills" },
+    { href: "/#work", label: "Experience" },
+    { href: "/#contact", label: "Contact" },
   ];
 
   return (

@@ -75,6 +75,7 @@
 
   html {
     scroll-behavior: smooth;
+    scroll-padding-top: 5rem;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
@@ -248,7 +249,7 @@
     @apply inline-flex items-center justify-center px-6 py-3 text-sm font-medium tracking-wide rounded-lg;
     background: hsl(168, 65%, 38%);
     color: white;
-    transition: all var(--transition-spring);
+    transition: all var(--transition-smooth);
     box-shadow: var(--shadow-sm);
   }
 
@@ -287,8 +288,15 @@
 
   /* Floating animation for visual interest */
   @keyframes float {
-    0%, 100% { transform: translateY(0px); }
-    50% { transform: translateY(-10px); }
+
+    0%,
+    100% {
+      transform: translateY(0px);
+    }
+
+    50% {
+      transform: translateY(-10px);
+    }
   }
 
   .animate-float {
@@ -297,8 +305,15 @@
 
   /* Pulse glow effect */
   @keyframes pulse-glow {
-    0%, 100% { box-shadow: 0 0 0 0 hsla(168, 65%, 38%, 0.4); }
-    50% { box-shadow: 0 0 20px 10px hsla(168, 65%, 38%, 0.1); }
+
+    0%,
+    100% {
+      box-shadow: 0 0 0 0 hsla(168, 65%, 38%, 0.4);
+    }
+
+    50% {
+      box-shadow: 0 0 20px 10px hsla(168, 65%, 38%, 0.1);
+    }
   }
 
   .animate-pulse-glow {
