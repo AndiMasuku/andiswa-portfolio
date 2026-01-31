@@ -31,7 +31,7 @@ const EducationSection = () => {
                         <div className="h-56 relative w-full overflow-hidden shrink-0">
                             <img
                                 src={ukznLabImage}
-                                alt="UKZN Laboratory"
+                                alt="Andiswa Masuku - UKZN Laboratory and Biological Sciences Education"
                                 className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                             />
                             <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
@@ -77,7 +77,7 @@ const EducationSection = () => {
                         <div className="h-56 relative w-full overflow-hidden shrink-0">
                             <img
                                 src={witsFieldworkImage}
-                                alt="Wits Fieldwork"
+                                alt="Andiswa Masuku - Wits Fieldwork and Ecology Education"
                                 className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                             />
                             <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />

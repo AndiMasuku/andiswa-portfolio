@@ -104,8 +104,8 @@ const Projects = () => {
   return (
     <div className="min-h-screen bg-background">
       <Helmet>
-        <title>Research Projects | Andiswa Masuku</title>
-        <meta name="description" content="Explore research projects by Andiswa Masuku, including movement ecology, marine conservation, and climate change resonance." />
+        <title>Research Projects | Andiswa Masuku - Biological Sciences Researcher</title>
+        <meta name="description" content="Explore the diverse research portfolio of Andiswa Masuku, including movement ecology, marine conservation, climate change impact, and spatial analysis (GIS)." />
       </Helmet>
       <motion.header
         initial={{ opacity: 0, y: -20 }}
@@ -172,7 +172,7 @@ const Projects = () => {
                   <div className="aspect-video overflow-hidden">
                     <img
                       src={project.image}
-                      alt={project.title}
+                      alt={`Andiswa Masuku Research - ${project.title}`}
                       className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                     />
                   </div>
@@ -219,7 +219,7 @@ const Projects = () => {
                   <div className="aspect-video overflow-hidden">
                     <img
                       src={area.image}
-                      alt={area.title}
+                      alt={`Andiswa Masuku | Scientific Area - ${area.title}`}
                       className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                     />
                   </div>

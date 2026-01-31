@@ -7,14 +7,16 @@ import WorkSection from "@/components/sections/WorkSection";
 import FooterSection from "@/components/FooterSection";
 import CustomCursor from "@/components/CustomCursor";
 import { Helmet } from "react-helmet-async";
+import PersonSchema from "@/components/PersonSchema";
 
 const Index = () => {
   return (
     <div className="min-h-screen bg-background text-foreground cursor-none md:cursor-none">
       <Helmet>
         <title>Andiswa Masuku | Biological Sciences & Data Analytics Portfolio</title>
-        <meta name="description" content="Portfolio of Andiswa Masuku, a multidisciplinary scientist specializing in biological sciences, data analytics, and sustainable food solutions." />
+        <meta name="description" content="Official portfolio of Andiswa Masuku, a Biological Sciences Researcher specializing in data-driven research, spatial analysis (GIS), and sustainable food solutions." />
       </Helmet>
+      <PersonSchema />
       <CustomCursor />
       <Navigation />
       <main>

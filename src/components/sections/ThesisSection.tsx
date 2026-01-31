@@ -33,7 +33,7 @@ const ThesisSection = () => {
                         <div className="h-64 relative w-full overflow-hidden shrink-0">
                             <img
                                 src={marineConservation}
-                                alt="Academic Projects"
+                                alt="Andiswa Masuku - Academic Projects Portfolio"
                                 className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                             />
                             <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent z-30" />
@@ -79,7 +79,7 @@ const ThesisSection = () => {
                         <div className="h-64 relative w-full overflow-hidden shrink-0">
                             <img
                                 src={thesisImage}
-                                alt="Honours Research"
+                                alt="Andiswa Masuku - Honours Research Thesis"
                                 className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                             />
                             <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />

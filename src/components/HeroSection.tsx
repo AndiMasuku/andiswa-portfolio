@@ -8,7 +8,7 @@ const HeroSection = () => {
       <div className="lg:hidden absolute inset-0 z-0">
         <img
           src={andiswaPortrait}
-          alt="Andiswa Masuku"
+          alt="Andiswa Masuku - Biological Sciences Researcher"
           className="w-full h-full object-cover object-top"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-background via-background/70 to-background/20" />
@@ -112,7 +112,7 @@ const HeroSection = () => {
             <div className="relative rounded-2xl overflow-hidden" style={{ boxShadow: 'var(--shadow-xl)' }}>
               <img
                 src={andiswaPortrait}
-                alt="Andiswa Masuku - Biological Sciences Researcher"
+                alt="Andiswa Masuku - Professional Biological Sciences Researcher Portait"
                 className="w-full h-auto max-h-[75vh] object-cover object-top"
               />
             </div>

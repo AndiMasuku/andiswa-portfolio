@@ -59,8 +59,8 @@ const ThesisDetail = () => {
     return (
         <div className="min-h-screen bg-background">
             <Helmet>
-                <title>Honours Research: Insect Protein Fortification | Andiswa Masuku</title>
-                <meta name="description" content="Detailed look at Andiswa Masuku's Honours research on fortifying bread with edible termites to combat malnutrition." />
+                <title>Insect Protein Fortification Research | Andiswa Masuku Honours Thesis</title>
+                <meta name="description" content="Deep dive into Andiswa Masuku's Honours research on fortifying bread with edible termites (Termitomyces) to combat malnutrition in Southern Africa." />
             </Helmet>
             <motion.header
                 initial={{ opacity: 0, y: -20 }}
@@ -111,7 +111,7 @@ const ThesisDetail = () => {
                             className="relative"
                         >
                             <div className="rounded-2xl overflow-hidden shadow-xl">
-                                <img src={thesisImage} alt="Bread fortification research" className="w-full h-auto" />
+                                <img src={thesisImage} alt="Andiswa Masuku - Bread fortification research" className="w-full h-auto" />
                             </div>
                             <div className="absolute -bottom-4 -right-4 w-24 h-24 bg-accent/10 rounded-full blur-2xl" />
                         </motion.div>
@@ -127,7 +127,7 @@ const ThesisDetail = () => {
                         viewport={{ once: true }}
                         className="rounded-2xl overflow-hidden shadow-lg"
                     >
-                        <img src={edibleInsects} alt="African protein sources - termites and mopane worms" className="w-full h-auto" />
+                        <img src={edibleInsects} alt="Andiswa Masuku | Sustainable protein sources research - termites and mopane worms" className="w-full h-auto" />
                     </motion.div>
                 </div>
             </section>
@@ -220,7 +220,7 @@ const ThesisDetail = () => {
                             viewport={{ once: true }}
                             className="card-professional overflow-hidden"
                         >
-                            <img src={breadTexture} alt="Texture profile analysis" className="w-full aspect-video object-cover" />
+                            <img src={breadTexture} alt="Andiswa Masuku methodology - Texture profile analysis" className="w-full aspect-video object-cover" />
                             <div className="p-6">
                                 <h3 className="font-display text-xl font-semibold text-primary mb-2">Texture Profile Analysis</h3>
                                 <p className="text-sm text-muted-foreground">Measuring fracturability and hardness to assess structural integrity</p>
@@ -233,7 +233,7 @@ const ThesisDetail = () => {
                             transition={{ delay: 0.1 }}
                             className="card-professional overflow-hidden"
                         >
-                            <img src={colourimetry} alt="Colourimetry analysis" className="w-full aspect-video object-cover" />
+                            <img src={colourimetry} alt="Andiswa Masuku methodology - Colourimetry analysis" className="w-full aspect-video object-cover" />
                             <div className="p-6">
                                 <h3 className="font-display text-xl font-semibold text-primary mb-2">Colourimetry</h3>
                                 <p className="text-sm text-muted-foreground">Analysing food quality and visual appeal through colour measurement</p>
