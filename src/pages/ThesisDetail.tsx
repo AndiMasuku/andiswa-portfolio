@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { ArrowLeft, Beaker, BarChart3, Microscope, FlaskConical, CheckCircle2, Lightbulb } from "lucide-react";
 import { Link } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 import thesisImage from "@/assets/thesis-research.png";
 import breadTexture from "@/assets/bread-texture.png";
 import colourimetry from "@/assets/colourimetry.png";
@@ -57,6 +58,10 @@ const ThesisDetail = () => {
 
     return (
         <div className="min-h-screen bg-background">
+            <Helmet>
+                <title>Honours Research: Insect Protein Fortification | Andiswa Masuku</title>
+                <meta name="description" content="Detailed look at Andiswa Masuku's Honours research on fortifying bread with edible termites to combat malnutrition." />
+            </Helmet>
             <motion.header
                 initial={{ opacity: 0, y: -20 }}
                 animate={{ opacity: 1, y: 0 }}
