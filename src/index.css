@@ -91,10 +91,9 @@
     color: white;
   }
 
-  /* Focus states for accessibility */
+  /* Focus states for accessibility - Removed default blue glow */
   :focus-visible {
-    @apply outline-2 outline-offset-2;
-    outline-color: hsl(168, 65%, 38%);
+    @apply outline-none ring-2 ring-accent ring-offset-2 ring-offset-background;
   }
 }
 
@@ -382,6 +381,25 @@
   .scrollbar-hide::-webkit-scrollbar {
     display: none;
   }
+}
+
+/* Custom Styled Scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: hsl(var(--background));
+}
+
+::-webkit-scrollbar-thumb {
+  background: hsl(var(--muted-foreground) / 0.3);
+  border-radius: 5px;
+  border: 2px solid hsl(var(--background));
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: hsl(var(--accent) / 0.5);
 }
 
 /* Mobile-first responsive adjustments */

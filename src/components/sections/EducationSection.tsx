@@ -28,7 +28,7 @@ const EducationSection = () => {
                         className="group relative overflow-hidden rounded-2xl bg-white border border-border shadow-sm flex flex-col"
                     >
                         {/* Image Top Banner */}
-                        <div className="h-64 relative w-full overflow-hidden shrink-0">
+                        <div className="h-56 relative w-full overflow-hidden shrink-0">
                             <img
                                 src={ukznLabImage}
                                 alt="UKZN Laboratory"
@@ -43,13 +43,15 @@ const EducationSection = () => {
                                 <span className="inline-block px-3 py-1 bg-accent/10 text-accent text-xs font-semibold rounded-full uppercase tracking-wider">
                                     Honours 2025
                                 </span>
+                                <div className="w-5 h-5" /> {/* Spacer for balance */}
                             </div>
 
                             <div className="mb-6 flex-1">
                                 <h3 className="font-display text-2xl md:text-3xl text-primary mb-2">
                                     University of KwaZulu-Natal
                                 </h3>
-                                <p className="text-muted-foreground text-lg font-medium">BSc Honours in Biological Sciences</p>
+                                <p className="text-muted-foreground text-lg font-medium mb-1">BSc Honours in Biological Sciences</p>
+                                <p className="text-muted-foreground/80 text-sm h-5 invisible">Spacer</p> {/* Alignment spacer */}
                                 <p className="text-sm text-accent italic mt-3">"Where curiosity meets sustainable solutions"</p>
                             </div>
 
@@ -72,7 +74,7 @@ const EducationSection = () => {
                         className="group relative overflow-hidden rounded-2xl bg-white border border-border shadow-sm flex flex-col"
                     >
                         {/* Image Top Banner */}
-                        <div className="h-64 relative w-full overflow-hidden shrink-0">
+                        <div className="h-56 relative w-full overflow-hidden shrink-0">
                             <img
                                 src={witsFieldworkImage}
                                 alt="Wits Fieldwork"
@@ -82,7 +84,7 @@ const EducationSection = () => {
                         </div>
 
                         {/* Content */}
-                        <div className="p-8 md:p-10 flex flex-col flex-1">
+                        <div className="p-8 md:p-10 flex flex-col flex-1 border-t border-border/50">
                             <div className="flex items-center justify-between mb-4">
                                 <span className="inline-block px-3 py-1 bg-accent/10 text-accent text-xs font-semibold rounded-full uppercase tracking-wider">
                                     BSc 2017-2020

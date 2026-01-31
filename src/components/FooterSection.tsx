@@ -40,24 +40,43 @@ const FooterSection = () => {
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5, delay: 0.3 }}
-          className="mt-20 pt-8 border-t border-primary-foreground/10 flex flex-col md:flex-row justify-between items-center gap-6"
+          className="mt-20 pt-12 border-t border-primary-foreground/10"
         >
-          <div className="text-center md:text-left">
-            <p className="text-primary-foreground/80 font-medium">andiswa.masuku.southafrica@gmail.com</p>
-            <p className="text-sm text-primary-foreground/50 mt-1">Johannesburg, South Africa</p>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-12">
+            <div className="flex flex-col gap-3">
+              <span className="text-xs uppercase tracking-widest text-primary-foreground/40 font-semibold mb-2">Navigation</span>
+              <a href="#research" className="text-sm text-primary-foreground/70 hover:text-[hsl(168,65%,65%)] transition-colors">Research</a>
+              <a href="#education" className="text-sm text-primary-foreground/70 hover:text-[hsl(168,65%,65%)] transition-colors">Education</a>
+              <a href="#skills" className="text-sm text-primary-foreground/70 hover:text-[hsl(168,65%,65%)] transition-colors">Skills</a>
+              <a href="#work" className="text-sm text-primary-foreground/70 hover:text-[hsl(168,65%,65%)] transition-colors">Experience</a>
+            </div>
+            <div className="flex flex-col gap-3">
+              <span className="text-xs uppercase tracking-widest text-primary-foreground/40 font-semibold mb-2">Social</span>
+              <a href="https://www.linkedin.com/in/andiswa-masuku" target="_blank" rel="noopener noreferrer" className="text-sm text-primary-foreground/70 hover:text-[hsl(168,65%,65%)] transition-colors">LinkedIn</a>
+            </div>
+            <div className="md:col-span-2 flex flex-col md:items-end gap-3">
+              <span className="text-xs uppercase tracking-widest text-primary-foreground/40 font-semibold mb-2">Contact</span>
+              <p className="text-sm text-primary-foreground/70">Johannesburg, South Africa</p>
+              <a href="mailto:andiswa.masuku.southafrica@gmail.com" className="text-sm text-primary-foreground/70 hover:text-[hsl(168,65%,65%)] transition-colors">andiswa.masuku.southafrica@gmail.com</a>
+            </div>
           </div>
 
-          <div className="flex items-center gap-4">
-            <a
-              href="https://www.linkedin.com/in/andiswa-masuku"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-5 py-2.5 border border-primary-foreground/30 text-primary-foreground text-sm font-medium rounded-full hover:bg-primary-foreground/10 transition-colors"
-            >
-              <Linkedin size={16} strokeWidth={1.5} />
-              LinkedIn
-            </a>
-            <span className="text-sm text-primary-foreground/40">© 2026</span>
+          <div className="flex flex-col md:flex-row justify-between items-center gap-6 pt-8 border-t border-primary-foreground/5">
+            <div className="text-center md:text-left">
+              <p className="text-sm text-primary-foreground/40">© {new Date().getFullYear()} Andiswa Masuku. All rights reserved.</p>
+            </div>
+
+            <div className="flex items-center gap-4">
+              <a
+                href="https://www.linkedin.com/in/andiswa-masuku"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-3 px-6 py-3 border border-primary-foreground/30 text-primary-foreground text-sm font-medium rounded-full hover:bg-primary-foreground/10 transition-all hover:scale-105"
+              >
+                <Linkedin size={20} strokeWidth={1.5} />
+                LinkedIn
+              </a>
+            </div>
           </div>
         </motion.div>
       </div>

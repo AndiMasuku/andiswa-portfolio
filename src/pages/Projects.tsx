@@ -66,8 +66,8 @@ const researchAreas = [
     title: "African Zoology",
     subtitle: "Terrestrial Vertebrates",
     image: africanZoology,
-    description: "Study of terrestrial African vertebrate zoology, including diversity, behavior, and ecological roles.",
-    skills: ["Animal Behavior", "Taxonomy", "Ecology"],
+    description: "Study of terrestrial African vertebrate zoology, including diversity, behaviour, and ecological roles.",
+    skills: ["Animal Behaviour", "Taxonomy", "Ecology"],
   },
   {
     id: "demonstrator",
@@ -84,7 +84,7 @@ const researchAreas = [
     subtitle: "Environmental Resilience",
     image: climateChange,
     description: "Investigating the long-term impacts of climate change on local ecosystems and developing strategies for environmental resilience.",
-    skills: ["Climate Science", "Data Modeling", "Impact Assessment"],
+    skills: ["Climate Science", "Data Modelling", "Impact Assessment"],
     icon: <CloudSun size={20} className="text-accent" />,
   },
   {
@@ -154,10 +154,9 @@ const Projects = () => {
             transition={{ duration: 0.6 }}
             className="mb-20"
           >
-            <h2 className="font-display text-2xl md:text-3xl font-semibold text-primary mb-6 flex items-center gap-3">
-              <span className="w-8 h-0.5 bg-accent"></span>
+            <h2 className="font-display text-2xl md:text-3xl font-semibold text-primary mb-6 flex items-baseline gap-3">
               Fieldwork Projects
-              <span className="text-sm font-normal text-muted-foreground ml-2">Wits University</span>
+              <span className="text-sm font-medium text-accent/80 ml-auto">Wits University</span>
             </h2>
 
             <div className="grid md:grid-cols-3 gap-6">
@@ -168,7 +167,7 @@ const Projects = () => {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.5, delay: index * 0.1 }}
-                  className="card-professional overflow-hidden group"
+                  className="card-professional overflow-hidden group h-full flex flex-col"
                 >
                   <div className="aspect-video overflow-hidden">
                     <img
@@ -177,13 +176,13 @@ const Projects = () => {
                       className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                     />
                   </div>
-                  <div className="p-6">
+                  <div className="p-6 flex flex-col flex-1">
                     <div className="flex items-center gap-2 mb-2">
                       {project.icon}
                       <span className="text-xs text-muted-foreground uppercase tracking-wider">{project.subtitle}</span>
                     </div>
                     <h3 className="font-display text-lg font-semibold text-primary mb-3">{project.title}</h3>
-                    <p className="text-sm text-muted-foreground mb-4 leading-relaxed">{project.description}</p>
+                    <p className="text-sm text-muted-foreground mb-6 leading-relaxed flex-1">{project.description}</p>
                     <div className="flex flex-wrap gap-2">
                       {project.skills.map((skill) => (
                         <span key={skill} className="text-xs px-2 py-1 bg-secondary rounded-full text-muted-foreground">
@@ -203,8 +202,7 @@ const Projects = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <h2 className="font-display text-2xl md:text-3xl font-semibold text-primary mb-6 flex items-center gap-3">
-              <span className="w-8 h-0.5 bg-accent"></span>
+            <h2 className="font-display text-2xl md:text-3xl font-semibold text-primary mb-6">
               Research Areas & Experience
             </h2>
 
@@ -216,7 +214,7 @@ const Projects = () => {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.5, delay: index * 0.1 }}
-                  className="card-professional overflow-hidden group"
+                  className="card-professional overflow-hidden group h-full flex flex-col"
                 >
                   <div className="aspect-video overflow-hidden">
                     <img
@@ -225,10 +223,10 @@ const Projects = () => {
                       className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                     />
                   </div>
-                  <div className="p-6">
+                  <div className="p-6 flex flex-col flex-1">
                     <span className="text-xs text-accent uppercase tracking-wider">{area.subtitle}</span>
                     <h3 className="font-display text-lg font-semibold text-primary mb-3 mt-1">{area.title}</h3>
-                    <p className="text-sm text-muted-foreground mb-4 leading-relaxed">{area.description}</p>
+                    <p className="text-sm text-muted-foreground mb-6 leading-relaxed flex-1">{area.description}</p>
                     <div className="flex flex-wrap gap-2">
                       {area.skills.map((skill) => (
                         <span key={skill} className="text-xs px-2 py-1 bg-secondary rounded-full text-muted-foreground">

@@ -32,7 +32,7 @@ const timelineData: TimelineItem[] = [
     id: "02",
     title: "Wits University",
     subtitle: "BSc in Biological Sciences",
-    year: "2017 — 2020",
+    year: "2017 - 2020",
     highlight: "Merit Award: Animal Behaviour",
     type: "education",
     description: "Majors in Ecology & Conservation, Organismal Biology. Field studies in Limpopo (community conservation) and Johannesburg (stream ecosystem health). Top performer in Ethology.",
@@ -44,13 +44,13 @@ const timelineData: TimelineItem[] = [
     year: "2022",
     highlight: "Data analysis for Sub-Saharan Africa",
     type: "work",
-    description: "Analyzed market trends and consumer insights to support regional strategy. Used Excel for data visualization and presented findings to regional leadership.",
+    description: "Analysed market trends and consumer insights to support regional strategy. Used Excel for data visualisation and presented findings to regional leadership.",
   },
   {
     id: "04",
     title: "Afrishore BPO",
     subtitle: "Client Services & Operations Specialist",
-    year: "2023 — 2025",
+    year: "2023 - 2025",
     highlight: "Employee of the Year 2023",
     type: "work",
     description: "Managed high-volume client operations while completing studies. Recognized for exceptional performance and team mentorship.",
@@ -167,7 +167,7 @@ const RunwayIndex = () => {
             <>
               <DialogHeader>
                 <span className={`label-spec mb-2 ${getTypeColor(selectedItem.type)}`}>
-                  {getTypeLabel(selectedItem.type)} — {selectedItem.year}
+                  {getTypeLabel(selectedItem.type)} - {selectedItem.year}
                 </span>
                 <DialogTitle className="font-display text-3xl md:text-4xl text-primary mb-2">
                   {selectedItem.title}

@@ -27,8 +27,9 @@ const ThesisSection = () => {
                         whileInView={{ opacity: 1, x: 0 }}
                         viewport={{ once: true, margin: "-100px" }}
                         transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-                        className="group relative overflow-hidden rounded-2xl bg-white border border-border shadow-sm flex flex-col"
+                        className="group relative overflow-hidden rounded-2xl bg-white border border-border shadow-sm flex flex-col hover:shadow-md transition-all"
                     >
+                        <Link to="/projects" className="absolute inset-0 z-50 aria-label='View all academic projects'" />
                         <div className="h-64 relative w-full overflow-hidden shrink-0">
                             <img
                                 src={marineConservation}
@@ -39,7 +40,7 @@ const ThesisSection = () => {
                         </div>
 
                         <div className="p-8 md:p-10 flex flex-col flex-1 relative z-40 -mt-20">
-                            <h3 className="font-display text-3xl text-white leading-tight mb-6 drop-shadow-md">
+                            <h3 className="font-display text-3xl text-white leading-tight mb-6 drop-shadow-md group-hover:text-accent transition-colors">
                                 Academic Projects
                             </h3>
 
@@ -57,13 +58,10 @@ const ThesisSection = () => {
                                 </div>
 
                                 <div className="mt-auto pt-6 border-t border-border flex justify-end">
-                                    <Link
-                                        to="/projects"
-                                        className="btn-professional group flex items-center gap-2 whitespace-nowrap bg-accent text-white px-6 py-3 rounded-xl hover:bg-accent/90 transition-all font-medium shadow-sm shadow-accent/20"
-                                    >
+                                    <div className="btn-professional group flex items-center gap-2 whitespace-nowrap bg-accent text-white px-6 py-3 rounded-xl group-hover:bg-accent/90 transition-all font-medium shadow-sm shadow-accent/20">
                                         Browse All Projects
                                         <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
-                                    </Link>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -75,8 +73,9 @@ const ThesisSection = () => {
                         whileInView={{ opacity: 1, x: 0 }}
                         viewport={{ once: true, margin: "-100px" }}
                         transition={{ duration: 0.7, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-                        className="group relative overflow-hidden rounded-2xl bg-white border border-border shadow-sm flex flex-col"
+                        className="group relative overflow-hidden rounded-2xl bg-white border border-border shadow-sm flex flex-col hover:shadow-md transition-all"
                     >
+                        <Link to="/projects/thesis" className="absolute inset-0 z-50 aria-label='View research tour'" />
                         <div className="h-64 relative w-full overflow-hidden shrink-0">
                             <img
                                 src={thesisImage}
@@ -87,7 +86,7 @@ const ThesisSection = () => {
                         </div>
 
                         <div className="p-8 md:p-10 flex flex-col flex-1 relative z-10 -mt-20">
-                            <h3 className="font-display text-3xl text-white leading-tight mb-6 drop-shadow-md">
+                            <h3 className="font-display text-3xl text-white leading-tight mb-6 drop-shadow-md group-hover:text-accent transition-colors">
                                 Honours Research
                             </h3>
 
@@ -105,13 +104,10 @@ const ThesisSection = () => {
                                 </div>
 
                                 <div className="mt-auto pt-6 border-t border-border flex justify-end">
-                                    <Link
-                                        to="/projects/thesis"
-                                        className="btn-professional group flex items-center gap-2 whitespace-nowrap bg-accent text-white px-6 py-3 rounded-xl hover:bg-accent/90 transition-all shadow-sm shadow-accent/20 font-medium"
-                                    >
+                                    <div className="btn-professional group flex items-center gap-2 whitespace-nowrap bg-accent text-white px-6 py-3 rounded-xl group-hover:bg-accent/90 transition-all shadow-sm shadow-accent/20 font-medium">
                                         View Research Tour
                                         <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
-                                    </Link>
+                                    </div>
                                 </div>
                             </div>
                         </div>

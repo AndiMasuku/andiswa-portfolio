@@ -15,7 +15,7 @@ export default {
     },
     extend: {
       fontFamily: {
-        display: ['Playfair Display', 'serif'],
+        display: ['Cormorant Garamond', 'serif'],
         mono: ['Space Mono', 'monospace'],
       },
       colors: {

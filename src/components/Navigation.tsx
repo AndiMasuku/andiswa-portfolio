@@ -46,7 +46,7 @@ const Navigation = () => {
           AM
         </a>
 
-        <div className="hidden md:flex items-center gap-10">
+        <div className="hidden md:flex items-center gap-12">
           {navLinks.map((link) => (
             <a
               key={link.href}
@@ -77,15 +77,14 @@ const Navigation = () => {
             </SheetTrigger>
             <SheetContent
               side="right"
-              className="w-full sm:w-[400px] border-l border-border/50 bg-background p-8"
+              className="w-full sm:w-[400px] border-l border-border/50 bg-background p-8 flex flex-col"
             >
-              <VisuallyHidden.Root>
-                <SheetTitle>Navigation Menu</SheetTitle>
-                <SheetDescription>Navigate to different sections</SheetDescription>
-              </VisuallyHidden.Root>
+              <div className="flex items-center justify-between mb-8 pb-4 border-b border-border/50">
+                <span className="font-display text-xl font-semibold uppercase tracking-widest text-muted-foreground/50">Menu</span>
+              </div>
 
               <div className="flex flex-col h-full pt-8">
-                <nav className="flex flex-col gap-6">
+                <nav className="flex flex-col gap-4">
                   {navLinks.map((link, index) => (
                     <motion.a
                       key={link.href}
@@ -94,22 +93,22 @@ const Navigation = () => {
                       initial={{ opacity: 0, x: 20 }}
                       animate={{ opacity: 1, x: 0 }}
                       transition={{ delay: index * 0.05, duration: 0.3 }}
-                      className="font-display text-3xl text-primary hover:opacity-70 transition-opacity"
+                      className="font-display text-3xl text-primary hover:text-accent transition-colors py-2"
                     >
                       {link.label}
                     </motion.a>
                   ))}
                 </nav>
 
-                <div className="mt-auto pt-12 border-t border-border/50">
+                <div className="mt-auto py-8 border-t border-border/50">
                   <a
                     href="https://www.linkedin.com/in/andiswa-masuku"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-3 text-muted-foreground hover:text-primary transition-colors"
+                    className="inline-flex items-center gap-3 text-muted-foreground hover:text-accent transition-colors p-3 -ml-3"
                   >
-                    <Linkedin size={20} strokeWidth={1.5} />
-                    <span className="text-sm font-medium tracking-wide">LinkedIn</span>
+                    <Linkedin size={24} strokeWidth={1.5} />
+                    <span className="text-lg font-medium tracking-wide">LinkedIn</span>
                   </a>
                 </div>
               </div>

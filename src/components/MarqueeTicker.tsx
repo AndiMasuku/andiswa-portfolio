@@ -10,7 +10,7 @@ const MarqueeTicker = ({ items = [] }: { items?: string[] }) => {
     "R Programming",
   ];
 
-  const content = displayItems.join(" — ") + " — ";
+  const content = displayItems.join(" • ") + " • ";
 
   return (
     <div className="py-6 border-y border-border overflow-hidden bg-secondary/30">

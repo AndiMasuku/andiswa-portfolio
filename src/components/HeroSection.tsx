@@ -39,7 +39,7 @@ const HeroSection = () => {
               className="max-w-xl"
             >
               <p className="body-text text-muted-foreground leading-relaxed">
-                Turning <span className="text-accent font-medium">indigenous insects</span> into affordable nutrition solutions through scientific research and data-driven insights.
+                Bridging the gap between ecological research and sustainable development with data-driven scientific insights.
               </p>
             </motion.div>
 
@@ -49,7 +49,7 @@ const HeroSection = () => {
               transition={{ duration: 0.7, delay: 0.35, ease: [0.16, 1, 0.3, 1] }}
               className="flex flex-wrap gap-3"
             >
-              {["Food Security", "Data Analysis", "R Programming", "Ecology", "AI & Tech"].map((area, index) => (
+              {["Spatial Analysis (GIS)", "Marine Ecology", "R Programming", "Conservation Science", "Data Modelling"].map((area, index) => (
                 <motion.span
                   key={area}
                   initial={{ opacity: 0, scale: 0.8 }}
@@ -70,7 +70,7 @@ const HeroSection = () => {
             >
               <a
                 href="#contact"
-                className="btn-professional group"
+                className="btn-professional group min-w-[160px]"
               >
                 Get in Touch
                 <svg className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -81,7 +81,7 @@ const HeroSection = () => {
                 href="https://www.linkedin.com/in/andiswa-masuku"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="btn-outline group"
+                className="btn-outline group min-w-[160px]"
               >
                 <Linkedin size={16} strokeWidth={2} className="mr-2" />
                 LinkedIn
