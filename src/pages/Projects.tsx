@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { ArrowLeft, MapPin, Droplets, Users, Anchor, Navigation } from "lucide-react";
+import { ArrowLeft, MapPin, Droplets, Users, Anchor, Navigation, Leaf, CloudSun } from "lucide-react";
 import { Link } from "react-router-dom";
 
 // Import images
@@ -10,6 +10,8 @@ import africanZoology from "@/assets/african-zoology.png";
 import labDemonstrator from "@/assets/lab-demonstrator.png";
 import communityMap from "/images/community-map.jpeg";
 import riverResearch from "/images/river-research.png";
+import climateChange from "@/assets/climate-change-research.jpg";
+import sustainability from "@/assets/project-sustainability.jpg";
 
 const fieldworkProjects = [
   {
@@ -75,6 +77,24 @@ const researchAreas = [
     description: "Guided first-year biology students through lab practicals, invigilated tests, and marked practical assessments.",
     skills: ["Teaching", "Assessment", "Mentorship"],
     icon: <Users size={20} className="text-accent" />,
+  },
+  {
+    id: "climate",
+    title: "Climate Change Impact",
+    subtitle: "Environmental Resilience",
+    image: climateChange,
+    description: "Investigating the long-term impacts of climate change on local ecosystems and developing strategies for environmental resilience.",
+    skills: ["Climate Science", "Data Modeling", "Impact Assessment"],
+    icon: <CloudSun size={20} className="text-accent" />,
+  },
+  {
+    id: "sustainability",
+    title: "Sustainable Development",
+    subtitle: "Future-Proofing",
+    image: sustainability,
+    description: "Researched sustainable development practices to balance economic growth with environmental preservation.",
+    skills: ["Sustainability", "Policy Analysis", "Green Tech"],
+    icon: <Leaf size={20} className="text-accent" />,
   },
 ];
 

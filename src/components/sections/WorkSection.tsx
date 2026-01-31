@@ -55,11 +55,11 @@ const WorkSection = () => {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true, margin: "-100px" }}
                     transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-                    className="mb-12"
+                    className="mb-12 text-center"
                 >
                     <span className="label-spec text-muted-foreground">Work Experience</span>
                     <h2 className="font-display text-3xl md:text-4xl text-primary mt-3">Building Character</h2>
-                    <p className="text-muted-foreground mt-3 max-w-lg">
+                    <p className="text-muted-foreground mt-3 max-w-lg mx-auto">
                         Roles that built discipline, communication skills, and real-world problem solving.
                     </p>
                 </motion.div>
