@@ -12,7 +12,6 @@ import communityMap from "/images/community-map.jpeg";
 import riverResearch from "/images/river-research.png";
 import climateChange from "@/assets/climate-change-research.jpg";
 import sustainability from "@/assets/project-sustainability.jpg";
-import thesisImage from "@/assets/thesis-research.png";
 
 const fieldworkProjects = [
   {
@@ -146,36 +145,7 @@ const Projects = () => {
           </motion.div>
 
 
-          <motion.section
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="mb-20"
-          >
-            <div className="card-professional p-8 bg-accent/5 border-accent/20 flex flex-col md:flex-row gap-8 items-center">
-              <div className="md:w-1/3 aspect-video rounded-xl overflow-hidden shadow-md">
-                <img src={thesisImage} alt="Honours Research" className="w-full h-full object-cover" />
-              </div>
-              <div className="md:w-2/3">
-                <span className="label-spec text-accent block mb-2">Featured Research • Honours 2025</span>
-                <h2 className="font-display text-2xl md:text-3xl font-semibold text-primary mb-4">Insect Protein Fortification</h2>
-                <p className="text-muted-foreground mb-6 leading-relaxed">
-                  My primary focus: Investigating the viability of locally-sourced termite protein to create affordable,
-                  nutritious bread for Southern Africa.
-                </p>
-                <Link
-                  to="/projects/thesis"
-                  className="inline-flex items-center gap-2 text-accent font-semibold hover:underline"
-                >
-                  View Research Tour
-                  <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                  </svg>
-                </Link>
-              </div>
-            </div>
-          </motion.section>
+
 
           <motion.section
             initial={{ opacity: 0, y: 20 }}
