@@ -1,10 +1,9 @@
 import { useEffect, useRef, useState, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { MapPin, ExternalLink, ChevronRight, Layers, X, Maximize2 } from "lucide-react";
+import { MapPin, ExternalLink, ChevronRight, Layers, X, Maximize2, ArrowLeft } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 import { SITE_URL, toAbsoluteUrl, DEFAULT_OG_IMAGE } from "@/lib/seo";
-import Navigation from "@/components/Navigation";
 import L from "leaflet";
 import "leaflet/dist/leaflet.css";
 import {
@@ -176,8 +175,13 @@ const ResearchMap = () => {
         };
     }, [flyToProject]);
 
+    /* ---- Close sidebar on mobile by default ---- */
+    useEffect(() => {
+        if (window.innerWidth < 768) setIsNavOpen(false);
+    }, []);
+
     return (
-        <div className="h-screen w-screen bg-background flex flex-col overflow-hidden">
+        <div className="fixed inset-0 bg-slate-900">
             <Helmet>
                 <title>{title}</title>
                 <meta name="description" content={description} />
@@ -188,204 +192,211 @@ const ResearchMap = () => {
                 <meta property="og:image" content={ogImage} />
             </Helmet>
 
-            {/* Site-wide navigation */}
-            <Navigation />
+            {/* ---- Full-screen map ---- */}
+            <div ref={mapRef} className="absolute inset-0 z-0" />
 
-            {/* ---- Main: Map + Project Panel ---- */}
-            <div className="flex-1 flex relative overflow-hidden pt-[72px]">
-                {/* Map Viewport */}
-                <div ref={mapRef} className="flex-1 z-0" />
+            {/* ---- Floating back button (top-left) ---- */}
+            <Link
+                to="/"
+                className="absolute top-4 left-4 z-[500] flex items-center gap-2 px-4 py-2.5 rounded-2xl bg-white/90 backdrop-blur-md border border-white/50 shadow-lg shadow-black/10 text-slate-700 hover:text-emerald-700 hover:shadow-xl transition-all duration-200 group"
+            >
+                <ArrowLeft size={16} className="group-hover:-translate-x-0.5 transition-transform" />
+                <span className="text-sm font-semibold">Home</span>
+            </Link>
 
-                {/* Panel toggle button (always visible) */}
-                <button
-                    onClick={() => setIsNavOpen(!isNavOpen)}
-                    className="absolute top-4 right-4 z-[450] p-2 rounded-xl bg-white/90 backdrop-blur-sm border border-slate-200/50 shadow-sm text-slate-500 hover:text-emerald-600 hover:border-emerald-200 transition-all"
-                    title={isNavOpen ? "Close panel" : "Open projects"}
-                >
-                    {isNavOpen ? <X size={18} /> : <Layers size={18} />}
-                </button>
+            {/* ---- Panel toggle button (top-right, always visible) ---- */}
+            <button
+                onClick={() => setIsNavOpen(!isNavOpen)}
+                className="absolute top-4 right-4 z-[500] p-3 rounded-2xl bg-white/90 backdrop-blur-md border border-white/50 shadow-lg shadow-black/10 text-slate-600 hover:text-emerald-600 hover:shadow-xl transition-all duration-200"
+                title={isNavOpen ? "Close panel" : "Open projects"}
+            >
+                {isNavOpen ? <X size={18} /> : <Layers size={18} />}
+            </button>
 
-                {/* ---- Project Navigator Panel ---- */}
-                <AnimatePresence>
-                    {isNavOpen && (
-                        <motion.aside
-                            initial={{ x: 340, opacity: 0 }}
-                            animate={{ x: 0, opacity: 1 }}
-                            exit={{ x: 340, opacity: 0 }}
-                            transition={{ type: "spring", damping: 30, stiffness: 350 }}
-                            className="absolute right-0 top-0 bottom-0 w-[320px] bg-white/95 backdrop-blur-xl border-l border-slate-200/50 z-[400] flex flex-col shadow-2xl shadow-black/5"
-                        >
-                            {/* Panel header */}
-                            <div className="px-4 py-3 border-b border-slate-100 flex items-center gap-2 shrink-0">
-                                <span className="text-base">🗺️</span>
-                                <span className="font-display text-sm font-semibold text-slate-800">
-                                    Projects Map
-                                </span>
-                                <span className="text-[10px] px-1.5 py-0.5 rounded bg-emerald-50 text-emerald-700 font-medium border border-emerald-100 ml-auto">
-                                    {researchProjects.length} Sites
-                                </span>
+            {/* ---- Project Navigator Panel ---- */}
+            <AnimatePresence>
+                {isNavOpen && (
+                    <motion.aside
+                        initial={{ x: 380, opacity: 0 }}
+                        animate={{ x: 0, opacity: 1 }}
+                        exit={{ x: 380, opacity: 0 }}
+                        transition={{ type: "spring", damping: 28, stiffness: 320 }}
+                        className="absolute right-0 top-0 bottom-0 w-[340px] md:w-[360px] bg-white/95 backdrop-blur-2xl border-l border-slate-200/60 z-[450] flex flex-col shadow-2xl shadow-black/10"
+                    >
+                        {/* Panel header */}
+                        <div className="px-5 py-4 border-b border-slate-100/80 flex items-center gap-3 shrink-0">
+                            <div className="w-9 h-9 rounded-xl bg-emerald-50 border border-emerald-100 flex items-center justify-center">
+                                <span className="text-lg">🗺️</span>
                             </div>
+                            <div>
+                                <h1 className="font-display text-base font-bold text-slate-900 leading-tight">
+                                    Projects Map
+                                </h1>
+                                <p className="text-[11px] text-slate-400 mt-0.5">
+                                    {researchProjects.length} research sites across South Africa
+                                </p>
+                            </div>
+                        </div>
 
-                            {/* Active project detail */}
-                            {activeProject && active && (
-                                <motion.div
-                                    key={active.id}
-                                    initial={{ opacity: 0, y: -10 }}
-                                    animate={{ opacity: 1, y: 0 }}
-                                    transition={{ duration: 0.25 }}
-                                    className="p-4 border-b border-slate-100 shrink-0"
-                                    style={{
-                                        background: `linear-gradient(135deg, ${CATEGORY_META[active.category].color}06, transparent)`,
-                                    }}
-                                >
-                                    <div className="flex items-start gap-3 mb-2">
-                                        <span
-                                            className="w-10 h-10 rounded-xl flex items-center justify-center text-xl shrink-0"
-                                            style={{
-                                                backgroundColor: `${CATEGORY_META[active.category].color}12`,
-                                                border: `1.5px solid ${CATEGORY_META[active.category].color}25`,
-                                            }}
-                                        >
-                                            {CATEGORY_META[active.category].icon}
-                                        </span>
-                                        <div className="flex-1 min-w-0">
-                                            <h2 className="font-display text-base font-semibold text-slate-900 leading-tight">
-                                                {active.title}
-                                            </h2>
-                                            <p className="text-[11px] text-slate-400 mt-0.5 flex items-center gap-1">
-                                                <MapPin size={10} />
-                                                {active.location}
-                                            </p>
-                                        </div>
+                        {/* Active project detail */}
+                        {activeProject && active && (
+                            <motion.div
+                                key={active.id}
+                                initial={{ opacity: 0, y: -8 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                transition={{ duration: 0.2 }}
+                                className="px-5 py-4 border-b border-slate-100/80 shrink-0"
+                                style={{
+                                    background: `linear-gradient(135deg, ${CATEGORY_META[active.category].color}08, transparent)`,
+                                }}
+                            >
+                                <div className="flex items-start gap-3 mb-3">
+                                    <span
+                                        className="w-11 h-11 rounded-xl flex items-center justify-center text-xl shrink-0"
+                                        style={{
+                                            backgroundColor: `${CATEGORY_META[active.category].color}12`,
+                                            border: `1.5px solid ${CATEGORY_META[active.category].color}25`,
+                                        }}
+                                    >
+                                        {CATEGORY_META[active.category].icon}
+                                    </span>
+                                    <div className="flex-1 min-w-0">
+                                        <h2 className="font-display text-lg font-bold text-slate-900 leading-tight">
+                                            {active.title}
+                                        </h2>
+                                        <p className="text-xs text-slate-400 mt-1 flex items-center gap-1">
+                                            <MapPin size={11} />
+                                            {active.location}
+                                        </p>
                                     </div>
+                                </div>
 
-                                    <p className="text-xs text-slate-500 leading-relaxed mb-3">
-                                        {active.description}
-                                    </p>
+                                <p className="text-sm text-slate-600 leading-relaxed mb-3">
+                                    {active.description}
+                                </p>
 
-                                    <div className="flex flex-wrap gap-1 mb-3">
-                                        {active.skills.map((s) => (
-                                            <span
-                                                key={s}
-                                                className="text-[10px] px-2 py-0.5 rounded-full bg-slate-50 border border-slate-200 text-slate-500"
+                                <div className="flex flex-wrap gap-1.5 mb-3">
+                                    {active.skills.map((s) => (
+                                        <span
+                                            key={s}
+                                            className="text-[11px] px-2.5 py-1 rounded-full bg-slate-50 border border-slate-200 text-slate-500 font-medium"
+                                        >
+                                            {s}
+                                        </span>
+                                    ))}
+                                </div>
+
+                                {/* Laduma cluster stats */}
+                                {active.id === "laduma-tracking" && (
+                                    <div className="flex gap-2 mb-3">
+                                        <div className="flex-1 text-center p-2 rounded-xl bg-white border border-slate-100">
+                                            <div className="font-bold text-sm text-slate-800">
+                                                {ladumaSummary.validPoints.toLocaleString()}
+                                            </div>
+                                            <div className="text-[10px] text-slate-400 mt-0.5">GPS Points</div>
+                                        </div>
+                                        {(Object.keys(CLUSTER_META) as ClusterKey[]).map((k) => (
+                                            <div
+                                                key={k}
+                                                className="flex-1 text-center p-2 rounded-xl bg-white border border-slate-100"
                                             >
-                                                {s}
-                                            </span>
+                                                <div className="flex items-center justify-center gap-1">
+                                                    <span
+                                                        className="w-2 h-2 rounded-full"
+                                                        style={{ backgroundColor: CLUSTER_META[k].color }}
+                                                    />
+                                                    <span className="font-bold text-sm text-slate-800">
+                                                        {ladumaSummary.clusterCounts[k]}
+                                                    </span>
+                                                </div>
+                                                <div className="text-[10px] text-slate-400 truncate mt-0.5">
+                                                    {CLUSTER_META[k].label}
+                                                </div>
+                                            </div>
                                         ))}
                                     </div>
+                                )}
 
-                                    {/* Laduma cluster stats */}
-                                    {active.id === "laduma-tracking" && (
-                                        <div className="flex gap-1.5 mb-3">
-                                            <div className="flex-1 text-center p-1.5 rounded-lg bg-white border border-slate-100">
-                                                <div className="font-bold text-xs text-slate-800">
-                                                    {ladumaSummary.validPoints.toLocaleString()}
-                                                </div>
-                                                <div className="text-[9px] text-slate-400">Points</div>
-                                            </div>
-                                            {(Object.keys(CLUSTER_META) as ClusterKey[]).map((k) => (
-                                                <div
-                                                    key={k}
-                                                    className="flex-1 text-center p-1.5 rounded-lg bg-white border border-slate-100"
-                                                >
-                                                    <div className="flex items-center justify-center gap-1">
-                                                        <span
-                                                            className="w-1.5 h-1.5 rounded-full"
-                                                            style={{ backgroundColor: CLUSTER_META[k].color }}
-                                                        />
-                                                        <span className="font-bold text-xs text-slate-800">
-                                                            {ladumaSummary.clusterCounts[k]}
-                                                        </span>
-                                                    </div>
-                                                    <div className="text-[9px] text-slate-400 truncate">
-                                                        {CLUSTER_META[k].label}
-                                                    </div>
-                                                </div>
-                                            ))}
-                                        </div>
-                                    )}
+                                {active.detailLink && (
+                                    <Link
+                                        to={active.detailLink}
+                                        className="inline-flex items-center gap-1.5 text-xs font-semibold text-emerald-600 hover:text-emerald-700 transition-colors"
+                                    >
+                                        View project details <ExternalLink size={11} />
+                                    </Link>
+                                )}
+                            </motion.div>
+                        )}
 
-                                    {active.detailLink && (
-                                        <Link
-                                            to={active.detailLink}
-                                            className="inline-flex items-center gap-1 text-[11px] font-medium text-emerald-600 hover:text-emerald-700"
+                        {/* Show All button */}
+                        <button
+                            onClick={showAllProjects}
+                            className={`mx-4 mt-4 mb-2 flex items-center gap-2 px-4 py-3 rounded-xl text-sm font-semibold transition-all ${!activeProject
+                                ? "bg-emerald-50 text-emerald-700 border border-emerald-200 ring-2 ring-emerald-100"
+                                : "bg-slate-50 text-slate-500 border border-slate-200 hover:bg-emerald-50 hover:text-emerald-600 hover:border-emerald-200"
+                                }`}
+                        >
+                            <Maximize2 size={14} />
+                            Show All Sites
+                        </button>
+
+                        {/* Project list */}
+                        <div className="flex-1 overflow-y-auto px-3 pt-2 pb-6">
+                            {researchProjects.map((project) => {
+                                const catMeta = CATEGORY_META[project.category];
+                                const isActive = project.id === activeProject;
+                                return (
+                                    <button
+                                        key={project.id}
+                                        onClick={() => flyToProject(project)}
+                                        className={`w-full text-left px-3 py-3 mb-1 rounded-xl flex items-center gap-3 transition-all duration-150 group ${isActive
+                                            ? "bg-emerald-50/80 ring-1 ring-emerald-200"
+                                            : "hover:bg-slate-50"
+                                            }`}
+                                    >
+                                        <span
+                                            className="w-9 h-9 rounded-lg flex items-center justify-center text-base shrink-0"
+                                            style={{
+                                                backgroundColor: `${catMeta.color}${isActive ? "15" : "08"}`,
+                                                border: `1px solid ${catMeta.color}${isActive ? "30" : "12"}`,
+                                            }}
                                         >
-                                            View project details <ExternalLink size={10} />
-                                        </Link>
-                                    )}
-                                </motion.div>
-                            )}
+                                            {catMeta.icon}
+                                        </span>
 
-                            {/* Show All button */}
-                            <button
-                                onClick={showAllProjects}
-                                className={`mx-3 mt-3 mb-1 flex items-center gap-2 px-3 py-2.5 rounded-xl text-xs font-semibold transition-all ${!activeProject
-                                    ? "bg-emerald-50 text-emerald-700 border border-emerald-200"
-                                    : "bg-slate-50 text-slate-500 border border-slate-200 hover:bg-emerald-50 hover:text-emerald-600 hover:border-emerald-200"
-                                    }`}
-                            >
-                                <Maximize2 size={13} />
-                                Show All Sites
-                            </button>
-
-                            {/* Project list */}
-                            <div className="flex-1 overflow-y-auto px-2 pt-2 pb-4">
-                                {researchProjects.map((project) => {
-                                    const catMeta = CATEGORY_META[project.category];
-                                    const isActive = project.id === activeProject;
-                                    return (
-                                        <button
-                                            key={project.id}
-                                            onClick={() => flyToProject(project)}
-                                            className={`w-full text-left px-3 py-2.5 mb-0.5 rounded-xl flex items-center gap-2.5 transition-all duration-150 group ${isActive
-                                                ? "bg-emerald-50/80 ring-1 ring-emerald-200"
-                                                : "hover:bg-slate-50"
-                                                }`}
-                                        >
-                                            <span
-                                                className="w-8 h-8 rounded-lg flex items-center justify-center text-sm shrink-0"
-                                                style={{
-                                                    backgroundColor: `${catMeta.color}${isActive ? "15" : "08"}`,
-                                                    border: `1px solid ${catMeta.color}${isActive ? "30" : "12"}`,
-                                                }}
-                                            >
-                                                {catMeta.icon}
-                                            </span>
-
-                                            <div className="flex-1 min-w-0">
-                                                <div
-                                                    className={`text-xs font-semibold truncate ${isActive ? "text-emerald-700" : "text-slate-700"
-                                                        }`}
-                                                >
-                                                    {project.title}
-                                                </div>
-                                                <div className="text-[10px] text-slate-400 truncate flex items-center gap-1">
-                                                    <MapPin size={8} className="shrink-0" />
-                                                    {project.location}
-                                                </div>
-                                            </div>
-
-                                            {project.hasTrackData && (
-                                                <span className="text-[8px] px-1.5 py-0.5 rounded bg-emerald-50 text-emerald-600 font-bold border border-emerald-100 shrink-0">
-                                                    GPS
-                                                </span>
-                                            )}
-
-                                            <ChevronRight
-                                                size={12}
-                                                className={`shrink-0 transition-all ${isActive
-                                                    ? "text-emerald-500"
-                                                    : "text-slate-200 group-hover:text-slate-400"
+                                        <div className="flex-1 min-w-0">
+                                            <div
+                                                className={`text-sm font-semibold truncate ${isActive ? "text-emerald-700" : "text-slate-700"
                                                     }`}
-                                            />
-                                        </button>
-                                    );
-                                })}
-                            </div>
-                        </motion.aside>
-                    )}
-                </AnimatePresence>
-            </div>
+                                            >
+                                                {project.title}
+                                            </div>
+                                            <div className="text-[11px] text-slate-400 truncate flex items-center gap-1 mt-0.5">
+                                                <MapPin size={9} className="shrink-0" />
+                                                {project.location}
+                                            </div>
+                                        </div>
+
+                                        {project.hasTrackData && (
+                                            <span className="text-[9px] px-2 py-1 rounded-lg bg-emerald-50 text-emerald-600 font-bold border border-emerald-100 shrink-0">
+                                                GPS
+                                            </span>
+                                        )}
+
+                                        <ChevronRight
+                                            size={14}
+                                            className={`shrink-0 transition-all ${isActive
+                                                ? "text-emerald-500"
+                                                : "text-slate-200 group-hover:text-slate-400"
+                                                }`}
+                                        />
+                                    </button>
+                                );
+                            })}
+                        </div>
+                    </motion.aside>
+                )}
+            </AnimatePresence>
 
             {/* Global styles */}
             <style>{`
@@ -394,17 +405,19 @@ const ResearchMap = () => {
           border: none !important;
         }
         .leaflet-control-zoom {
-          border-radius: 12px !important;
-          border: 1px solid rgba(148,163,184,0.2) !important;
+          border-radius: 16px !important;
+          border: 1px solid rgba(255,255,255,0.5) !important;
           overflow: hidden;
-          box-shadow: 0 2px 8px rgba(0,0,0,0.06) !important;
+          box-shadow: 0 4px 12px rgba(0,0,0,0.1) !important;
+          backdrop-filter: blur(8px);
         }
         .leaflet-control-zoom a {
-          width: 34px !important;
-          height: 34px !important;
-          line-height: 34px !important;
-          font-size: 16px !important;
+          width: 38px !important;
+          height: 38px !important;
+          line-height: 38px !important;
+          font-size: 17px !important;
           color: #475569 !important;
+          background: rgba(255,255,255,0.9) !important;
         }
         .leaflet-control-zoom a:hover {
           background: #f1f5f9 !important;
