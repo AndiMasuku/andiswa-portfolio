@@ -22,7 +22,7 @@ const workData: TimelineItem[] = [
         id: "01",
         title: "Afrishore BPO",
         role: "Client Services & Operations Specialist",
-        year: "2023-2025",
+        year: "Aug 2023 - Jan 2025",
         highlight: "Employee of the Year 2023",
         description: "Managed 50+ daily client inquiries for US insurance clients, achieving 95% satisfaction rate and 15% increase in feedback scores. Trained new team members.",
     },
@@ -30,7 +30,7 @@ const workData: TimelineItem[] = [
         id: "02",
         title: "Procter & Gamble",
         role: "Analytics Intern",
-        year: "2022",
+        year: "Jun 2022 - Aug 2022",
         highlight: "Presented to Regional Head",
         description: "Analysed market trends for Sub-Saharan Africa baby care products. Created data visualisations in Excel and presented findings directly to Regional Head.",
     },
@@ -38,7 +38,7 @@ const workData: TimelineItem[] = [
         id: "03",
         title: "Mila Decorative Flowers",
         role: "Florist & Social Media",
-        year: "2021",
+        year: "Jan 2021 - Dec 2021",
         highlight: "Brand growth",
         description: "Managed inventory, created floral arrangements, grew social media presence through content creation.",
     },
@@ -48,24 +48,22 @@ const WorkSection = () => {
     const [selectedItem, setSelectedItem] = useState<TimelineItem | null>(null);
 
     return (
-        <section id="work" className="py-20 md:py-28 px-6 md:px-12 bg-secondary/30">
+        <section id="work" className="py-16 md:py-24 px-6 md:px-12 bg-secondary/30">
             <div className="max-w-[1400px] mx-auto">
-                {/* Section Header */}
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true, margin: "-100px" }}
                     transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-                    className="mb-12"
+                    className="mb-10 text-center"
                 >
                     <span className="label-spec text-muted-foreground">Work Experience</span>
                     <h2 className="font-display text-3xl md:text-4xl text-primary mt-3">Building Character</h2>
-                    <p className="text-muted-foreground mt-3 max-w-lg">
+                    <p className="text-muted-foreground mt-3 max-w-lg mx-auto">
                         Roles that built discipline, communication skills, and real-world problem solving.
                     </p>
                 </motion.div>
 
-                {/* Cards Grid */}
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
                     {workData.map((item, index) => (
                         <motion.div
@@ -95,7 +93,6 @@ const WorkSection = () => {
                 </div>
             </div>
 
-            {/* Detail Modal */}
             <Dialog open={!!selectedItem} onOpenChange={() => setSelectedItem(null)}>
                 <DialogContent className="max-w-md p-8 bg-background border-border/50 rounded-2xl">
                     {selectedItem && (

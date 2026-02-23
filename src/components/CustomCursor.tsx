@@ -1,42 +1,49 @@
-import { useState, useEffect } from "react";
+import { useEffect, useRef } from "react";
 
 const CustomCursor = () => {
-  const [position, setPosition] = useState({ x: 0, y: 0 });
-  const [isVisible, setIsVisible] = useState(false);
+  const cursorRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    // Only show custom cursor on desktop
+    if (window.innerWidth < 768) return;
+
+    const cursor = cursorRef.current;
+    if (!cursor) return;
+
+    let rafId = 0;
+    let x = 0;
+    let y = 0;
+
     const updateCursor = (e: MouseEvent) => {
-      setPosition({ x: e.clientX, y: e.clientY });
+      x = e.clientX;
+      y = e.clientY;
+      cancelAnimationFrame(rafId);
+      rafId = requestAnimationFrame(() => {
+        cursor.style.left = `${x - 12}px`;
+        cursor.style.top = `${y - 12}px`;
+      });
     };
 
-    const handleMouseEnter = () => setIsVisible(true);
-    const handleMouseLeave = () => setIsVisible(false);
+    const show = () => { cursor.style.opacity = "1"; };
+    const hide = () => { cursor.style.opacity = "0"; };
 
-    document.addEventListener("mousemove", updateCursor);
-    document.addEventListener("mouseenter", handleMouseEnter);
-    document.addEventListener("mouseleave", handleMouseLeave);
+    document.addEventListener("mousemove", updateCursor, { passive: true });
+    document.addEventListener("mouseenter", show);
+    document.addEventListener("mouseleave", hide);
 
     return () => {
+      cancelAnimationFrame(rafId);
       document.removeEventListener("mousemove", updateCursor);
-      document.removeEventListener("mouseenter", handleMouseEnter);
-      document.removeEventListener("mouseleave", handleMouseLeave);
+      document.removeEventListener("mouseenter", show);
+      document.removeEventListener("mouseleave", hide);
     };
   }, []);
 
-  // Only show custom cursor on desktop
-  if (typeof window !== "undefined" && window.innerWidth < 768) {
-    return null;
-  }
-
   return (
     <div
-      className={`fixed pointer-events-none z-[9998] w-6 h-6 rounded-full border border-primary blend-difference transition-opacity duration-200 hidden md:block ${
-        isVisible ? "opacity-100" : "opacity-0"
-      }`}
-      style={{
-        left: position.x - 12,
-        top: position.y - 12,
-      }}
+      ref={cursorRef}
+      className="fixed pointer-events-none z-[9998] w-6 h-6 rounded-full border border-primary blend-difference hidden md:block"
+      style={{ opacity: 0, willChange: "left, top" }}
     />
   );
 };

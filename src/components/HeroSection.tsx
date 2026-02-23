@@ -1,24 +1,26 @@
 import { motion } from "framer-motion";
 import { Linkedin } from "lucide-react";
-import andiswaPortrait from "@/assets/andiswa-hero.png";
+import andiswaPortrait from "@/assets/andiswa-hero.webp";
+import { EMAIL_HREF, openEmail } from "@/lib/email";
 
 const HeroSection = () => {
   return (
-    <section className="relative min-h-screen flex flex-col lg:block overflow-hidden bg-background">
-      {/* Mobile Layout: Image Background */}
+    <section className="relative min-h-[90vh] lg:min-h-screen flex flex-col lg:block overflow-hidden bg-background">
       <div className="lg:hidden absolute inset-0 z-0">
         <img
           src={andiswaPortrait}
-          alt="Andiswa Masuku"
+          alt="Andiswa Masuku - Biological Sciences Researcher"
+          loading="eager"
+          decoding="async"
+          fetchPriority="high"
           className="w-full h-full object-cover object-top"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-background via-background/70 to-background/20" />
       </div>
 
-      <div className="max-w-[1400px] mx-auto px-6 md:px-12 h-full relative z-10 flex flex-col justify-end lg:justify-center min-h-screen pb-16 lg:pb-0 pt-24 lg:pt-0">
-        <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-12 lg:gap-20">
+      <div className="max-w-[1400px] mx-auto px-6 md:px-12 h-full relative z-10 flex flex-col justify-end lg:justify-center min-h-[90vh] lg:min-h-screen pb-12 lg:pb-0 pt-20 lg:pt-0">
+        <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-10 lg:gap-16">
 
-          {/* Text Content */}
           <div className="lg:w-[55%] order-2 lg:order-1 space-y-8 mt-auto lg:mt-0">
 
             <motion.div
@@ -26,64 +28,85 @@ const HeroSection = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
             >
-              <span className="label-spec text-muted-foreground block mb-4">
+              <span className="label-spec text-accent block mb-4">
                 Biological Sciences Researcher
               </span>
-              <h1 className="headline-primary text-primary text-balance">
+              <h1 className="headline-primary gradient-text text-balance">
                 Andiswa Masuku
               </h1>
             </motion.div>
 
             <motion.div
-              initial={{ opacity: 0, y: 30 }}
+              initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-              className="space-y-4 max-w-xl"
+              transition={{ duration: 0.8, delay: 0.25, ease: [0.16, 1, 0.3, 1] }}
+              className="max-w-xl"
             >
-              <p className="body-text text-muted-foreground text-justify">
-                My Honours research at the University of KwaZulu-Natal tested whether locally-sourced termite protein in bread can create an affordable, nutritious food source.
+              <p className="body-text text-muted-foreground leading-relaxed">
+                Bridging the gap between ecological research and sustainable development with data-driven scientific insights.
               </p>
             </motion.div>
 
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
-              className="flex flex-wrap gap-2"
+              transition={{ duration: 0.7, delay: 0.35, ease: [0.16, 1, 0.3, 1] }}
+              className="flex flex-wrap gap-3"
             >
-              {["Food Security", "Nutrition Science", "Data Analysis", "Ecology", "Climate Change", "Conservation", "Sustainability"].map((area) => (
-                <span
+              {["Spatial Analysis (GIS)", "Marine Ecology", "R Programming", "Conservation Science", "Data Modelling", "Food Development"].map((area, index) => (
+                <motion.span
                   key={area}
-                  className="px-4 py-2 bg-secondary/80 text-foreground/80 text-sm font-medium rounded-full"
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ delay: 0.4 + index * 0.05, duration: 0.4 }}
+                  className="skill-tag cursor-default"
                 >
                   {area}
-                </span>
+                </motion.span>
               ))}
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.5, ease: [0.16, 1, 0.3, 1] }}
+              className="flex flex-wrap items-center gap-4 pt-4"
+            >
+              <a
+                href={EMAIL_HREF}
+                onClick={openEmail}
+                className="btn-professional group min-w-[160px]"
+              >
+                Get in Touch
+                <svg className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                </svg>
+              </a>
+              <a
+                href="https://www.linkedin.com/in/andiswa-masuku"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn-outline group min-w-[160px]"
+              >
+                <Linkedin size={16} strokeWidth={2} className="mr-2" />
+                LinkedIn
+              </a>
             </motion.div>
 
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              transition={{ duration: 0.6, delay: 0.5, ease: [0.16, 1, 0.3, 1] }}
-              className="flex flex-wrap items-center gap-3 text-sm text-muted-foreground pt-2"
+              transition={{ duration: 0.6, delay: 0.6 }}
+              className="flex items-center gap-3 text-sm text-muted-foreground pt-2"
             >
-              <span>Johannesburg, South Africa</span>
-              <span className="w-1 h-1 rounded-full bg-muted-foreground/40" />
-              <span>BSc Honours Graduate</span>
-              <span className="w-1 h-1 rounded-full bg-muted-foreground/40" />
-              <a
-                href="https://www.linkedin.com/in/andiswa-masuku"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-4 py-1.5 bg-[#0A66C2] text-white text-xs font-semibold rounded-full hover:bg-[#004182] transition-colors shadow-sm"
-              >
-                <Linkedin size={14} strokeWidth={2} />
-                LinkedIn
-              </a>
+              <span className="flex items-center gap-2">
+                <span className="w-2 h-2 rounded-full bg-accent animate-pulse"></span>
+                Available for opportunities
+              </span>
+
             </motion.div>
           </div>
 
-          {/* Desktop Image */}
           <motion.div
             initial={{ opacity: 0, scale: 0.98 }}
             animate={{ opacity: 1, scale: 1 }}
@@ -93,7 +116,10 @@ const HeroSection = () => {
             <div className="relative rounded-2xl overflow-hidden" style={{ boxShadow: 'var(--shadow-xl)' }}>
               <img
                 src={andiswaPortrait}
-                alt="Andiswa Masuku - Biological Sciences Researcher"
+                alt="Andiswa Masuku - Professional Biological Sciences Researcher Portait"
+                loading="eager"
+                decoding="async"
+                fetchPriority="high"
                 className="w-full h-auto max-h-[75vh] object-cover object-top"
               />
             </div>
@@ -101,7 +127,6 @@ const HeroSection = () => {
         </div>
       </div>
 
-      {/* Scroll indicator - desktop only */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}

@@ -1,0 +1,20 @@
+{
+  "redirects": [
+    {
+      "source": "/projects/laduma-map",
+      "destination": "/projects/projects-map",
+      "permanent": true
+    },
+    {
+      "source": "/projects/research-map",
+      "destination": "/projects/projects-map",
+      "permanent": true
+    }
+  ],
+  "rewrites": [
+    {
+      "source": "/(.*)",
+      "destination": "/index.html"
+    }
+  ]
+}

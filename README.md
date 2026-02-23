@@ -1,73 +1,100 @@
-# Welcome to your Lovable project
+# Andiswa Masuku | Scientific Portfolio
 
-## Project info
+A premium, data-driven academic portfolio showcasing research in Marine Biology, Spatial Ecology, and Food Science. Built with a focus on visual storytelling and scientific rigor.
 
-**URL**: https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID
+## 🗺️ Site Architecture (ASCII Map)
 
-## How can I edit this code?
-
-There are several ways of editing your application.
-
-**Use Lovable**
-
-Simply visit the [Lovable Project](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and start prompting.
-
-Changes made via Lovable will be committed automatically to this repo.
-
-**Use your preferred IDE**
-
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
-
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
-
-Follow these steps:
-
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
-
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
-
-# Step 3: Install the necessary dependencies.
-npm i
-
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
+```text
+ROOT (/)
+│
+├── 🏠 HOME (Index)
+│   ├── [NAV] Navigation Bar
+│   ├── [HERO] Professional Intro
+│   ├── [THESIS] Caracal Study Preview (Google Earth Link)
+│   ├── [EDUCATION] Academic Background
+│   ├── [WORK] Research & Professional Timeline
+│   ├── [SKILLS] Technical Capabilities (R, GIS, Lab)
+│   └── [FOOTER] Contact & Social Links
+│
+├── 📊 PROJECTS (/projects)
+│   ├── [FIELDWORK] Active Research Cards
+│   └── [RESEARCH AREAS] Domain Expertise Cards
+│       └── 📝 ARTICLES (/projects/articles/:slug)
+│           ├── Fishing & Poaching Impacts
+│           ├── Body Size as a Master Trait
+│           ├── High Altitude Hypoxia adaptation
+│           └── Effective Trophic Levels
+│
+└── 🐆 THESIS DETAIL (/projects/thesis)
+    ├── Abstract & Objectives
+    ├── Interactive Wildlife Tracking Map
+    ├── Laboratory Methodology
+    └── Significance of Findings
 ```
 
-**Edit a file directly in GitHub**
+## 🚀 Tech Stack
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+- **Framework**: [React](https://reactjs.org/) + [Vite](https://vitejs.dev/)
+- **Language**: [TypeScript](https://www.typescriptlang.org/)
+- **Styling**: [Tailwind CSS](https://tailwindcss.com/) (Justified typography, premium HSL palette)
+- **Animations**: [Framer Motion](https://www.framer.com/motion/)
+- **Icons**: [Lucide React](https://lucide.dev/)
+- **Maps/Geo**: [Google Earth](https://earth.google.com/) (External 3D Tilted View Link)
 
-**Use GitHub Codespaces**
+## 📁 Project Structure
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+```text
+andiswa-portfolio/
+├── public/              # Static assets (favicon, SEO files)
+├── src/
+│   ├── assets/          # Optimized images and media
+│   ├── components/      # Reusable UI sections
+│   │   ├── sections/    # Major page blocks (Education, Work, etc.)
+│   │   └── ui/          # Base components (Dialog, Sheet)
+│   ├── data/            # Article content (TypeScript)
+│   ├── lib/             # Utility functions
+│   ├── pages/           # Route components
+│   └── index.css        # Global design system & typography
+├── index.html           # Entry point
+├── vite.config.ts       # Build configuration
+└── tailwind.config.ts   # Tailwind customization
+```
 
-## What technologies are used for this project?
+## 🧪 Key Features
 
-This project is built with:
+- **Scientific Storytelling**: Integrated 4 academic papers into 4-minute visual reads.
+- **Interactive GIS**: Integrated GPS tracking data with a forced 3D tilted camera angle in Google Earth.
+- **Premium Aesthetics**: High-end typography (Cormorant Garamond/Inter), HSL tailored colors, and glassmorphism.
+- **Justified Content**: All scientific descriptions and articles are fully justified for a professional academic feel.
+- **SEO Optimized**: Dynamic meta tags and JSON-LD schema for scientific indexing.
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+## ⚡ Production Optimizations
 
-## How can I deploy this project?
+The codebase has been optimized for production deployment:
 
-Simply open [Lovable](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and click on Share -> Publish.
+- **Image Loading Strategy**: Hero images load eagerly with high fetch priority; below-the-fold images are lazy-loaded with async decoding
+- **CSS Cleanup**: Removed unused Leaflet import and map-specific styles
+- **Bundle Trim**: Removed unused dependencies (React Query, Leaflet, Radix Toast/Tooltip/Label/Slot, next-themes, sonner) and the unused maps vendor chunk
+- **Code Cleanup**: Deleted unused components/hooks to reduce bloat (`AboutSection`, `RunwayIndex`, `NavLink`, `use-mobile`)
+- **Code Minification**: esbuild minification with console/debugger removal
+- **Asset Hygiene**: Removed unused `public/videos` to reduce deploy size
 
-## Can I connect a custom domain to my Lovable project?
+## 🛠️ Development
 
-Yes, you can!
+```bash
+# Install dependencies
+npm install
 
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
+# Run dev server
+npm run dev
 
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
+# Build for production
+npm run build
+
+# Preview production build
+npm run preview
+```
+
+---
+© 2026 Andiswa Masuku | [andiswa.masuku.southafrica@gmail.com](mailto:andiswa.masuku.southafrica@gmail.com)
+
