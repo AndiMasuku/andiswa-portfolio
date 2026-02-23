@@ -28,4 +28,8 @@
     <loc>https://andiswa.vercel.app/projects/articles/trophic-levels</loc>
     <priority>0.7</priority>
   </url>
+  <url>
+    <loc>https://andiswa.vercel.app/projects/projects-map</loc>
+    <priority>0.8</priority>
+  </url>
 </urlset>
