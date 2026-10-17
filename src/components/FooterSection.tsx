@@ -1,4 +1,3 @@
-import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { Linkedin, Mail, ArrowRight } from "lucide-react";
 import { EMAIL_HREF, EMAIL_ADDRESS, openEmail } from "@/lib/email";
@@ -8,13 +7,7 @@ const FooterSection = () => {
   return (
     <footer id="contact" className="pt-16 pb-24 md:py-22 bg-gradient-to-br from-primary via-primary to-[hsl(168,35%,25%)] text-primary-foreground">
       <div className="max-w-[1360px] mx-auto px-6 md:px-10">
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-          className="text-center max-w-2xl mx-auto"
-        >
+        <div className="text-center max-w-2xl mx-auto">
           <span className="inline-block px-4 py-1.5 bg-white/10 backdrop-blur-sm rounded-full text-xs font-medium uppercase tracking-widest text-primary-foreground/80 mb-6">
             Let's Connect
           </span>
@@ -37,15 +30,9 @@ const FooterSection = () => {
             Get in Touch
             <ArrowRight size={18} strokeWidth={1.5} className="group-hover:translate-x-1 transition-transform" />
           </a>
-        </motion.div>
+        </div>
 
-        <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5, delay: 0.3 }}
-          className="mt-12 pt-8 border-t border-primary-foreground/10"
-        >
+        <div className="mt-12 pt-8 border-t border-primary-foreground/10">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-8">
             <div className="flex flex-col gap-3">
               <span className="text-xs uppercase tracking-widest text-primary-foreground/40 font-semibold mb-2">Navigation</span>
@@ -116,7 +103,7 @@ const FooterSection = () => {
               </a>
             </div>
           </div>
-        </motion.div>
+        </div>
       </div>
     </footer>
   );

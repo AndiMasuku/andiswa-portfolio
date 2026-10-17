@@ -1,11 +1,12 @@
 import { useState, useEffect, useLayoutEffect } from "react";
 import { useLocation, Link } from "react-router-dom";
 import { Linkedin, Home, Briefcase, BookOpen, MapPin } from "lucide-react";
-import { motion } from "framer-motion";
 import { prefetchRoute } from "@/lib/prefetch";
 
 const Navigation = () => {
-  const [isScrolled, setIsScrolled] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(() =>
+    typeof window !== "undefined" ? window.scrollY > 50 : false
+  );
   const { pathname } = useLocation();
 
   useLayoutEffect(() => {
@@ -51,14 +52,10 @@ const Navigation = () => {
   return (
     <>
       {/* Top Header Bar */}
-      <motion.nav
-        initial={{ y: -20, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${isScrolled
-          ? "nav-glass py-4 shadow-sm"
-          : "bg-transparent py-5"
-          }`}
+      <nav
+        className={`fixed top-0 left-0 right-0 z-50 transition-[background-color,padding,box-shadow,border-color] duration-300 ${
+          isScrolled ? "nav-glass py-4 shadow-sm" : "bg-transparent py-5"
+        }`}
       >
         <div className="max-w-[1360px] mx-auto flex items-center justify-between px-6 md:px-10">
           <Link
@@ -110,14 +107,11 @@ const Navigation = () => {
             </a>
           </div>
         </div>
-      </motion.nav>
+      </nav>
 
-      {/* PawZa-Inspired Bottom Floating Pill Navigation Dock (Mobile Reachability) */}
+      {/* Bottom Floating Pill Navigation Dock (Mobile Reachability) */}
       <div className="md:hidden fixed bottom-5 inset-x-0 mx-auto w-fit z-50 pointer-events-auto px-4">
-        <motion.nav
-          initial={{ y: 20, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          transition={{ duration: 0.4, ease: "easeOut" }}
+        <nav
           className="flex items-center gap-1 p-1.5 bg-white/95 dark:bg-card/95 backdrop-blur-2xl border border-slate-200/80 dark:border-white/15 shadow-2xl shadow-black/20 rounded-full"
           aria-label="Mobile Navigation Dock"
         >
@@ -131,7 +125,7 @@ const Navigation = () => {
                 onMouseEnter={() => prefetchRoute(link.href)}
                 onTouchStart={() => prefetchRoute(link.href)}
                 onFocus={() => prefetchRoute(link.href)}
-                className={`relative flex items-center gap-1.5 px-3.5 py-2 rounded-full text-xs transition-all duration-200 ${
+                className={`relative flex items-center gap-1.5 px-3.5 py-2 rounded-full text-xs transition-colors duration-200 ${
                   active
                     ? "bg-slate-900 text-white font-semibold shadow-md dark:bg-white dark:text-slate-900"
                     : "text-slate-600 dark:text-slate-400 hover:text-slate-950 dark:hover:text-white"
@@ -145,7 +139,7 @@ const Navigation = () => {
               </Link>
             );
           })}
-        </motion.nav>
+        </nav>
       </div>
     </>
   );

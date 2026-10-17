@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { motion } from "framer-motion";
 import {
     Dialog,
     DialogContent,
@@ -65,13 +64,9 @@ const WorkSection = () => {
 
                 <div className="relative">
                     <div className="flex md:grid md:grid-cols-3 gap-4 md:gap-5 overflow-x-auto md:overflow-visible snap-x md:snap-none scrollbar-hide pb-2">
-                        {workData.map((item, index) => (
-                            <motion.div
+                        {workData.map((item) => (
+                            <div
                                 key={item.id}
-                                initial={{ opacity: 0, y: 14 }}
-                                whileInView={{ opacity: 1, y: 0 }}
-                                viewport={{ once: true, margin: "-40px" }}
-                                transition={{ duration: 0.4, delay: index * 0.06 }}
                                 onClick={() => setSelectedItem(item)}
                                 role="button"
                                 tabIndex={0}
@@ -81,7 +76,7 @@ const WorkSection = () => {
                                         setSelectedItem(item);
                                     }
                                 }}
-                                className="w-[285px] sm:w-[310px] md:w-auto shrink-0 md:shrink snap-start group p-5 sm:p-6 bg-white dark:bg-card border border-slate-200/80 dark:border-border/70 hover:border-emerald-600/35 rounded-2xl cursor-pointer transition-all duration-300 shadow-[0_1px_3px_rgba(0,0,0,0.03),0_6px_16px_rgba(0,0,0,0.02)] hover:shadow-[0_12px_28px_-6px_rgba(0,0,0,0.07)] hover:-translate-y-0.5 flex flex-col justify-between text-left"
+                                className="w-[285px] sm:w-[310px] md:w-auto shrink-0 md:shrink snap-start group p-5 sm:p-6 bg-white dark:bg-card border border-slate-200/80 dark:border-border/70 hover:border-emerald-600/35 rounded-2xl cursor-pointer transition-[transform,box-shadow,border-color] duration-300 shadow-[0_1px_3px_rgba(0,0,0,0.03),0_6px_16px_rgba(0,0,0,0.02)] hover:shadow-[0_12px_28px_-6px_rgba(0,0,0,0.07)] hover:-translate-y-0.5 flex flex-col justify-between text-left"
                             >
                                 <div>
                                     <div className="mb-3">
@@ -111,7 +106,7 @@ const WorkSection = () => {
                                         <ArrowRight size={12} className="group-hover:translate-x-0.5 transition-transform" />
                                     </span>
                                 </div>
-                            </motion.div>
+                            </div>
                         ))}
                     </div>
 

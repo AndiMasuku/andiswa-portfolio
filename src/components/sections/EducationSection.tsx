@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { GraduationCap, Award, Maximize2, ChevronRight } from "lucide-react";
 import ukznLabImage from "@/assets/ukzn-lab.webp";
@@ -67,14 +66,10 @@ const EducationSection = () => {
                 {/* Contained Editorial Cards: Responsive Rail on Mobile, 3-Columns on Desktop */}
                 <div className="relative">
                     <div className="flex md:grid md:grid-cols-3 gap-4 md:gap-6 overflow-x-auto md:overflow-visible snap-x md:snap-none scrollbar-hide pb-3">
-                        {educationData.map((item, index) => (
-                            <motion.div
+                        {educationData.map((item) => (
+                            <div
                                 key={item.id}
-                                initial={{ opacity: 0, y: 15 }}
-                                whileInView={{ opacity: 1, y: 0 }}
-                                viewport={{ once: true, margin: "-40px" }}
-                                transition={{ duration: 0.4, delay: index * 0.08 }}
-                                className={`w-[270px] sm:w-[295px] md:w-auto shrink-0 md:shrink snap-start group relative bg-white dark:bg-card border border-slate-200/80 dark:border-border/70 rounded-2xl overflow-hidden shadow-xs transition-all duration-300 flex flex-col justify-between ${
+                                className={`w-[270px] sm:w-[295px] md:w-auto shrink-0 md:shrink snap-start group relative bg-white dark:bg-card border border-slate-200/80 dark:border-border/70 rounded-2xl overflow-hidden shadow-xs transition-[box-shadow,border-color] duration-300 flex flex-col justify-between ${
                                     item.link
                                         ? "cursor-pointer hover:border-slate-300 hover:shadow-md"
                                         : ""
@@ -167,7 +162,7 @@ const EducationSection = () => {
                                         )}
                                     </div>
                                 </div>
-                            </motion.div>
+                            </div>
                         ))}
                     </div>
 

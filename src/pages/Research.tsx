@@ -1,4 +1,3 @@
-import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { useState, useMemo } from "react";
 import { Helmet } from "react-helmet-async";
@@ -176,12 +175,9 @@ const Research = () => {
               const destination = area.link || (area.id === "mountain-spiders" ? "/projects/msc" : "/research");
 
               return (
-                <motion.div
+                <div
                   key={area.id}
-                  initial={{ opacity: 0, y: 15 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.35, delay: index * 0.04 }}
-                  className="group relative bg-white dark:bg-card border border-slate-200/80 dark:border-border/70 hover:border-slate-300 rounded-2xl overflow-hidden shadow-xs hover:shadow-md transition-all duration-300 flex flex-col justify-between h-full cursor-pointer"
+                  className="group relative bg-white dark:bg-card border border-slate-200/80 dark:border-border/70 hover:border-slate-300 rounded-2xl overflow-hidden shadow-xs hover:shadow-md transition-[box-shadow,border-color] duration-300 flex flex-col justify-between h-full cursor-pointer"
                 >
                   {/* Full-Card Absolute Overlay Link */}
                   <Link
@@ -277,7 +273,7 @@ const Research = () => {
                       )}
                     </div>
                   </div>
-                </motion.div>
+                </div>
               );
             })}
           </div>

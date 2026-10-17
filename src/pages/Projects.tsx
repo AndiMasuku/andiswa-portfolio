@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 import { DEFAULT_OG_IMAGE, SITE_URL, toAbsoluteUrl } from "@/lib/seo";
@@ -95,12 +94,9 @@ const Projects = () => {
             {allFieldworkProjects.map((project, index) => {
               const destination = project.link || "/projects";
               return (
-                <motion.div
+                <div
                   key={project.id}
-                  initial={{ opacity: 0, y: 15 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.35, delay: index * 0.05 }}
-                  className="group relative bg-white dark:bg-card border border-slate-200/80 dark:border-border/70 hover:border-slate-300 rounded-2xl overflow-hidden shadow-xs hover:shadow-md transition-all duration-300 flex flex-col justify-between h-full cursor-pointer"
+                  className="group relative bg-white dark:bg-card border border-slate-200/80 dark:border-border/70 hover:border-slate-300 rounded-2xl overflow-hidden shadow-xs hover:shadow-md transition-[box-shadow,border-color] duration-300 flex flex-col justify-between h-full cursor-pointer"
                 >
                   {/* Full-Card Absolute Overlay Link */}
                   <Link
@@ -210,7 +206,7 @@ const Projects = () => {
                       )}
                     </div>
                   </div>
-                </motion.div>
+                </div>
               );
             })}
           </div>

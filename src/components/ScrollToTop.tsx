@@ -1,10 +1,14 @@
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import { useLocation } from "react-router-dom";
 
 const ScrollToTop = () => {
     const { pathname } = useLocation();
+    const prevPathname = useRef(pathname);
 
     useEffect(() => {
+        if (prevPathname.current === pathname) return;
+        prevPathname.current = pathname;
+
         const root = document.documentElement;
         const previous = root.style.scrollBehavior;
         root.style.scrollBehavior = "auto";

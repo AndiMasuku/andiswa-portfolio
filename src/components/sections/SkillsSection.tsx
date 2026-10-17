@@ -1,4 +1,3 @@
-import { motion } from "framer-motion";
 import { BarChart3, Microscope, Bot, MessageSquare, type LucideIcon } from "lucide-react";
 
 interface SkillCategory {
@@ -52,16 +51,12 @@ const SkillsSection = () => {
                 </div>
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
-                    {skillCategories.map((category, index) => {
+                    {skillCategories.map((category) => {
                         const IconComponent = category.icon;
                         return (
-                            <motion.div
+                            <div
                                 key={category.title}
-                                initial={{ opacity: 0, y: 14 }}
-                                whileInView={{ opacity: 1, y: 0 }}
-                                viewport={{ once: true, margin: "-40px" }}
-                                transition={{ duration: 0.4, delay: index * 0.05 }}
-                                className="group p-5 sm:p-6 bg-white dark:bg-card rounded-2xl border border-slate-200/80 dark:border-border/70 hover:border-emerald-600/35 shadow-[0_1px_3px_rgba(0,0,0,0.03),0_6px_16px_rgba(0,0,0,0.02)] hover:shadow-[0_12px_28px_-6px_rgba(0,0,0,0.07)] hover:-translate-y-0.5 transition-all duration-300 flex flex-col justify-between"
+                                className="group p-5 sm:p-6 bg-white dark:bg-card rounded-2xl border border-slate-200/80 dark:border-border/70 hover:border-emerald-600/35 shadow-[0_1px_3px_rgba(0,0,0,0.03),0_6px_16px_rgba(0,0,0,0.02)] hover:shadow-[0_12px_28px_-6px_rgba(0,0,0,0.07)] hover:-translate-y-0.5 transition-[transform,box-shadow,border-color] duration-300 flex flex-col justify-between"
                             >
                                 <div>
                                     {/* Card Header with Tactile Icon Badge */}
@@ -92,7 +87,7 @@ const SkillsSection = () => {
                                         ))}
                                     </ul>
                                 </div>
-                            </motion.div>
+                            </div>
                         );
                     })}
                 </div>
