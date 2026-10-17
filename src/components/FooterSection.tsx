@@ -1,11 +1,13 @@
 import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
 import { Linkedin, Mail, ArrowRight } from "lucide-react";
 import { EMAIL_HREF, EMAIL_ADDRESS, openEmail } from "@/lib/email";
+import { prefetchRoute } from "@/lib/prefetch";
 
 const FooterSection = () => {
   return (
-    <footer id="contact" className="py-16 md:py-22 px-6 md:px-12 bg-gradient-to-br from-primary via-primary to-[hsl(168,35%,25%)] text-primary-foreground">
-      <div className="max-w-[1400px] mx-auto">
+    <footer id="contact" className="pt-16 pb-24 md:py-22 bg-gradient-to-br from-primary via-primary to-[hsl(168,35%,25%)] text-primary-foreground">
+      <div className="max-w-[1360px] mx-auto px-6 md:px-10">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -47,13 +49,41 @@ const FooterSection = () => {
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-8">
             <div className="flex flex-col gap-3">
               <span className="text-xs uppercase tracking-widest text-primary-foreground/40 font-semibold mb-2">Navigation</span>
-              <a href="#research" className="text-sm text-primary-foreground/70 hover:text-[hsl(168,65%,65%)] transition-colors">Research</a>
-              <a href="#education" className="text-sm text-primary-foreground/70 hover:text-[hsl(168,65%,65%)] transition-colors">Education</a>
               <a href="#skills" className="text-sm text-primary-foreground/70 hover:text-[hsl(168,65%,65%)] transition-colors">Skills</a>
+              <a href="#research" className="text-sm text-primary-foreground/70 hover:text-[hsl(168,65%,65%)] transition-colors">Research</a>
+              <a href="#projects" className="text-sm text-primary-foreground/70 hover:text-[hsl(168,65%,65%)] transition-colors">Projects</a>
+              <a href="#education" className="text-sm text-primary-foreground/70 hover:text-[hsl(168,65%,65%)] transition-colors">Education</a>
               <a href="#work" className="text-sm text-primary-foreground/70 hover:text-[hsl(168,65%,65%)] transition-colors">Experience</a>
             </div>
             <div className="flex flex-col gap-3">
-              <span className="text-xs uppercase tracking-widest text-primary-foreground/40 font-semibold mb-2">Social</span>
+              <span className="text-xs uppercase tracking-widest text-primary-foreground/40 font-semibold mb-2">Directories & Connect</span>
+              <Link
+                to="/research"
+                onMouseEnter={() => prefetchRoute("/research")}
+                onTouchStart={() => prefetchRoute("/research")}
+                onFocus={() => prefetchRoute("/research")}
+                className="text-sm text-primary-foreground/70 hover:text-[hsl(168,65%,65%)] transition-colors"
+              >
+                All Research
+              </Link>
+              <Link
+                to="/projects"
+                onMouseEnter={() => prefetchRoute("/projects")}
+                onTouchStart={() => prefetchRoute("/projects")}
+                onFocus={() => prefetchRoute("/projects")}
+                className="text-sm text-primary-foreground/70 hover:text-[hsl(168,65%,65%)] transition-colors"
+              >
+                All Projects
+              </Link>
+              <Link
+                to="/projects/projects-map"
+                onMouseEnter={() => prefetchRoute("/projects/projects-map")}
+                onTouchStart={() => prefetchRoute("/projects/projects-map")}
+                onFocus={() => prefetchRoute("/projects/projects-map")}
+                className="text-sm text-primary-foreground/70 hover:text-[hsl(168,65%,65%)] transition-colors"
+              >
+                Interactive Map
+              </Link>
               <a href="https://www.linkedin.com/in/andiswa-masuku" target="_blank" rel="noopener noreferrer" className="text-sm text-primary-foreground/70 hover:text-[hsl(168,65%,65%)] transition-colors">LinkedIn</a>
             </div>
             <div className="md:col-span-2 flex flex-col md:items-end gap-3">

@@ -1,9 +1,15 @@
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
+import { prefetchRoute } from "@/lib/prefetch";
 
 const NotFound = () => {
   return (
     <div className="min-h-screen flex items-center justify-center bg-background px-6">
+      <Helmet>
+        <title>404 – Page Not Found | Andiswa Masuku</title>
+        <meta name="robots" content="noindex, nofollow" />
+      </Helmet>
       <div className="text-center space-y-8">
         <motion.h1
           initial={{ opacity: 0, y: 20 }}
@@ -21,7 +27,13 @@ const NotFound = () => {
           animate={{ opacity: 1 }}
           transition={{ delay: 0.2 }}
         >
-          <Link to="/" className="btn-brutal inline-block mt-8">
+          <Link
+            to="/"
+            onMouseEnter={() => prefetchRoute("/")}
+            onTouchStart={() => prefetchRoute("/")}
+            onFocus={() => prefetchRoute("/")}
+            className="btn-brutal inline-block mt-8"
+          >
             RETURN HOME
           </Link>
         </motion.div>

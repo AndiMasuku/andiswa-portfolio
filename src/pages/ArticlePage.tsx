@@ -1,11 +1,13 @@
-import { motion, AnimatePresence } from "framer-motion";
-import { ArrowLeft, Clock, BookOpen, ArrowRight, X } from "lucide-react";
+import { motion } from "framer-motion";
+import { ArrowLeft, Clock, BookOpen, ArrowRight, Maximize2 } from "lucide-react";
 import { Link, useParams } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 import { useState } from "react";
 import { getArticleBySlug, articles } from "@/data/articles";
 import { SITE_URL, toAbsoluteUrl } from "@/lib/seo";
+import { prefetchRoute } from "@/lib/prefetch";
 import Navigation from "@/components/Navigation";
+import ImageLightbox from "@/components/ImageLightbox";
 
 const ArticlePage = () => {
     const { slug } = useParams<{ slug: string }>();
@@ -15,9 +17,19 @@ const ArticlePage = () => {
     if (!article) {
         return (
             <div className="min-h-screen bg-background flex items-center justify-center">
+                <Helmet>
+                    <title>Article Not Found | Andiswa Masuku Research</title>
+                    <meta name="robots" content="noindex, nofollow" />
+                </Helmet>
                 <div className="text-center">
                     <h1 className="text-2xl font-display font-semibold mb-4">Article Not Found</h1>
-                    <Link to="/projects" className="text-accent hover:underline">
+                    <Link
+                        to="/projects"
+                        onMouseEnter={() => prefetchRoute("/projects")}
+                        onTouchStart={() => prefetchRoute("/projects")}
+                        onFocus={() => prefetchRoute("/projects")}
+                        className="text-accent hover:underline"
+                    >
                         ← Back to Projects
                     </Link>
                 </div>
@@ -117,7 +129,10 @@ const ArticlePage = () => {
                 className="relative pt-20"
             >
                 {/* Hero Image */}
-                <div className="relative h-[40vh] min-h-[300px] overflow-hidden">
+                <div
+                    className="relative h-[40vh] min-h-[300px] overflow-hidden cursor-pointer group"
+                    onClick={() => setSelectedImage(article.heroImage)}
+                >
                     <img
                         src={article.heroImage}
                         alt={article.title}
@@ -127,16 +142,51 @@ const ArticlePage = () => {
                         className="w-full h-full object-cover"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-background via-background/60 to-transparent" />
+                    <button
+                        type="button"
+                        onClick={(e) => {
+                            e.stopPropagation();
+                            setSelectedImage(article.heroImage);
+                        }}
+                        aria-label={`View full image for ${article.title}`}
+                        title="View full image"
+                        className="absolute top-4 right-4 md:right-8 z-20 inline-flex items-center justify-center w-9 h-9 rounded-full bg-black/55 hover:bg-black/80 text-white backdrop-blur-md border border-white/20 shadow-xs transition-all active:scale-95"
+                    >
+                        <Maximize2 size={15} />
+                    </button>
                 </div>
 
                 {/* Title Overlay */}
-                <div className="absolute bottom-0 left-0 right-0 px-6 md:px-12 pb-8">
-                    <div className="max-w-3xl mx-auto">
+                <div className="absolute bottom-0 left-0 right-0 px-6 md:px-12 pb-8 pointer-events-none">
+                    <div className="max-w-3xl mx-auto pointer-events-auto">
                         <motion.div
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ delay: 0.3, duration: 0.6 }}
                         >
+                            {/* Top Wayfinding Breadcrumbs */}
+                            <div className="flex flex-wrap items-center gap-2 mb-3 text-xs font-medium text-muted-foreground">
+                                <Link
+                                    to="/research"
+                                    onMouseEnter={() => prefetchRoute("/research")}
+                                    onTouchStart={() => prefetchRoute("/research")}
+                                    onFocus={() => prefetchRoute("/research")}
+                                    className="hover:text-accent transition-colors uppercase tracking-wider"
+                                >
+                                    Research
+                                </Link>
+                                <span className="text-muted-foreground/40">•</span>
+                                <Link
+                                    to="/projects"
+                                    onMouseEnter={() => prefetchRoute("/projects")}
+                                    onTouchStart={() => prefetchRoute("/projects")}
+                                    onFocus={() => prefetchRoute("/projects")}
+                                    className="hover:text-accent transition-colors uppercase tracking-wider"
+                                >
+                                    Fieldwork Projects
+                                </Link>
+                            </div>
+
                             <div className="flex items-center gap-3 mb-4">
                                 <span className={`px-3 py-1 rounded-full text-xs font-semibold uppercase tracking-wider ${colors.bg} ${colors.text} border ${colors.border}`}>
                                     {article.category}
@@ -158,7 +208,7 @@ const ArticlePage = () => {
             </motion.div>
 
             {/* Article Content */}
-            <main className="px-6 md:px-12 py-12">
+            <main className="px-6 md:px-12 pt-12 pb-24 md:pb-16">
                 <div className="max-w-3xl mx-auto">
 
                     {/* TLDR Card */}
@@ -178,7 +228,7 @@ const ArticlePage = () => {
                                     <span className={`flex-shrink-0 w-6 h-6 rounded-full ${colors.bg} ${colors.text} flex items-center justify-center text-xs font-bold border ${colors.border}`}>
                                         {index + 1}
                                     </span>
-                                    <span className="text-foreground/90 text-sm leading-relaxed text-justify">{point}</span>
+                                    <span className="text-foreground/90 text-sm leading-relaxed">{point}</span>
                                 </li>
                             ))}
                         </ul>
@@ -202,40 +252,39 @@ const ArticlePage = () => {
                             </p>
 
                             {/* Visual Media */}
-                            {section.visual && (
-                                <div className="bg-muted/30 rounded-xl p-6 border border-border">
-                                    {section.visual.src ? (
-                                        // Render actual media when src is provided
-                                        <div className={`${section.visual.src.endsWith('.mp4') ? 'aspect-[9/16] max-h-[600px] mx-auto' : ''} rounded-lg overflow-hidden mb-3`}>
-                                            {section.visual.src.endsWith('.mp4') ? (
-                                                <video
-                                                    src={section.visual.src}
-                                                    autoPlay
-                                                    muted
-                                                    loop
-                                                    playsInline
-                                                    preload="metadata"
-                                                    className="w-full h-full object-contain"
-                                                />
-                                            ) : (
+                            {section.visual && section.visual.src && (
+                                <div className="bg-white dark:bg-card rounded-2xl p-4 sm:p-5 border border-slate-200/80 dark:border-border shadow-xs">
+                                    <div className={`relative ${section.visual.src.endsWith('.mp4') ? 'aspect-[9/16] max-h-[600px] mx-auto' : ''} rounded-xl overflow-hidden mb-3 bg-secondary/30`}>
+                                        {section.visual.src.endsWith('.mp4') ? (
+                                            <video
+                                                src={section.visual.src}
+                                                autoPlay
+                                                muted
+                                                loop
+                                                playsInline
+                                                preload="metadata"
+                                                className="w-full h-full object-contain"
+                                            />
+                                        ) : (
+                                            <div
+                                                className="relative cursor-pointer group"
+                                                onClick={() => setSelectedImage(section.visual!.src!)}
+                                            >
                                                 <img
                                                     src={section.visual.src}
                                                     alt={section.visual.caption}
                                                     loading="lazy"
                                                     decoding="async"
-                                                    className="w-full h-auto object-contain cursor-pointer hover:opacity-90 transition-opacity"
-                                                    onClick={() => setSelectedImage(section.visual!.src!)}
+                                                    className="w-full h-auto object-contain group-hover:opacity-95 transition-opacity"
                                                 />
-                                            )}
-                                        </div>
-                                    ) : (
-                                        // Show placeholder when no src
-                                        <div className="aspect-[16/9] bg-gradient-to-br from-muted/50 to-muted rounded-lg flex items-center justify-center mb-3">
-                                            <span className="text-muted-foreground/50 text-sm">
-                                                [{section.visual.type === "chart" ? "📊" : section.visual.type === "diagram" ? "📐" : "🖼️"} Visual: {section.visual.caption}]
-                                            </span>
-                                        </div>
-                                    )}
+                                                <div className="absolute top-2.5 right-2.5 z-20">
+                                                    <span className="inline-flex items-center justify-center w-8 h-8 rounded-full bg-black/55 hover:bg-black/80 text-white backdrop-blur-md border border-white/20 shadow-xs transition-all">
+                                                        <Maximize2 size={13} />
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        )}
+                                    </div>
                                     <p className="text-xs text-muted-foreground text-center italic">
                                         {section.visual.caption}
                                     </p>
@@ -262,6 +311,9 @@ const ArticlePage = () => {
                                         <Link
                                             key={related.id}
                                             to={`/projects/articles/${related.slug}`}
+                                            onMouseEnter={() => prefetchRoute(`/projects/articles/${related.slug}`)}
+                                            onTouchStart={() => prefetchRoute(`/projects/articles/${related.slug}`)}
+                                            onFocus={() => prefetchRoute(`/projects/articles/${related.slug}`)}
                                             className="group p-4 rounded-xl bg-muted/30 border border-border hover:border-accent/30 transition-all"
                                         >
                                             <span className={`inline-block px-2 py-0.5 rounded-full text-xs font-medium ${relatedColors.bg} ${relatedColors.text} mb-2`}>
@@ -280,6 +332,34 @@ const ArticlePage = () => {
                         </motion.div>
                     )}
 
+                    {/* Interactive Telemetry Map Callout if Caracal article */}
+                    {article.relatedProjects?.includes("laduma-tracking") && (
+                        <motion.div
+                            initial={{ opacity: 0, y: 15 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true }}
+                            className="mt-8 p-6 rounded-2xl bg-slate-900 text-white flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 shadow-xl border border-emerald-500/30"
+                        >
+                            <div>
+                                <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[10px] font-semibold bg-emerald-500/20 text-emerald-300 uppercase tracking-wider mb-1.5">
+                                    Interactive Spatial Map
+                                </span>
+                                <h4 className="font-display text-lg font-bold">Explore Laduma's Live GPS Tracks</h4>
+                                <p className="text-xs text-slate-300 mt-0.5">Visualise all 1,749 collar coordinates, home range bounds, and spatial clusters.</p>
+                            </div>
+                            <Link
+                                to="/projects/projects-map?project=laduma-tracking"
+                                onMouseEnter={() => prefetchRoute("/projects/projects-map?project=laduma-tracking")}
+                                onTouchStart={() => prefetchRoute("/projects/projects-map?project=laduma-tracking")}
+                                onFocus={() => prefetchRoute("/projects/projects-map?project=laduma-tracking")}
+                                className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-semibold text-xs transition-colors shrink-0 shadow-sm"
+                            >
+                                <span>Open Telemetry Map</span>
+                                <ArrowRight size={14} />
+                            </Link>
+                        </motion.div>
+                    )}
+
                     {/* Back to Projects */}
                     <motion.div
                         initial={{ opacity: 0 }}
@@ -290,6 +370,9 @@ const ArticlePage = () => {
                     >
                         <Link
                             to="/projects"
+                            onMouseEnter={() => prefetchRoute("/projects")}
+                            onTouchStart={() => prefetchRoute("/projects")}
+                            onFocus={() => prefetchRoute("/projects")}
                             className="inline-flex items-center gap-2 text-accent hover:underline font-medium"
                         >
                             <ArrowLeft size={16} />
@@ -299,46 +382,11 @@ const ArticlePage = () => {
                 </div>
             </main>
 
-            {/* Lightbox Modal */}
-            <AnimatePresence>
-                {selectedImage && (
-                    <motion.div
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        exit={{ opacity: 0 }}
-                        className="fixed inset-0 z-[100] flex items-center justify-center bg-black/90 p-4 md:p-8"
-                        onClick={() => setSelectedImage(null)}
-                    >
-                        <motion.button
-                            initial={{ opacity: 0, scale: 0.8 }}
-                            animate={{ opacity: 1, scale: 1 }}
-                            className="absolute top-6 right-6 p-2 rounded-full bg-white/10 text-white hover:bg-white/20 transition-colors z-[110]"
-                            onClick={(e) => {
-                                e.stopPropagation();
-                                setSelectedImage(null);
-                            }}
-                        >
-                            <X size={24} />
-                        </motion.button>
-
-                        <motion.div
-                            initial={{ opacity: 0, scale: 0.9 }}
-                            animate={{ opacity: 1, scale: 1 }}
-                            exit={{ opacity: 0, scale: 0.9 }}
-                            transition={{ type: "spring", damping: 25, stiffness: 300 }}
-                            className="relative max-w-5xl w-full h-full flex items-center justify-center"
-                            onClick={(e) => e.stopPropagation()}
-                        >
-                            <img
-                                src={selectedImage}
-                                alt="Full screen preview"
-                                decoding="async"
-                                className="max-w-full max-h-full object-contain rounded-lg shadow-2xl"
-                            />
-                        </motion.div>
-                    </motion.div>
-                )}
-            </AnimatePresence>
+            <ImageLightbox
+                src={selectedImage}
+                alt={article.title}
+                onClose={() => setSelectedImage(null)}
+            />
         </div>
     );
 };

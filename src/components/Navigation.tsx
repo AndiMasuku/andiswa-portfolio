@@ -1,12 +1,11 @@
 import { useState, useEffect, useLayoutEffect } from "react";
 import { useLocation, Link } from "react-router-dom";
-import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
-import { Menu, Linkedin } from "lucide-react";
+import { Linkedin, Home, Briefcase, BookOpen, MapPin } from "lucide-react";
 import { motion } from "framer-motion";
+import { prefetchRoute } from "@/lib/prefetch";
 
 const Navigation = () => {
   const [isScrolled, setIsScrolled] = useState(false);
-  const [isOpen, setIsOpen] = useState(false);
   const { pathname } = useLocation();
 
   useLayoutEffect(() => {
@@ -23,107 +22,132 @@ const Navigation = () => {
   }, []);
 
   const navLinks = [
-    { href: "/", label: "Home" },
-    { href: "/projects", label: "Projects" },
-    { href: "/projects/thesis", label: "Research" },
-    { href: "/projects/projects-map", label: "Projects Map" },
+    { href: "/", label: "Home", icon: Home },
+    { href: "/research", label: "Research", icon: BookOpen },
+    { href: "/projects", label: "Projects", icon: Briefcase },
+    { href: "/projects/projects-map", label: "Map", icon: MapPin },
   ] as const;
 
-
+  const isLinkActive = (href: string) => {
+    if (href === "/") return pathname === "/";
+    if (href === "/projects/projects-map") return pathname === "/projects/projects-map";
+    if (href === "/research") {
+      return (
+        pathname === "/research" ||
+        pathname.startsWith("/projects/msc") ||
+        pathname.startsWith("/projects/thesis") ||
+        pathname.startsWith("/projects/mountain-spiders")
+      );
+    }
+    if (href === "/projects") {
+      return (
+        pathname === "/projects" ||
+        pathname.startsWith("/projects/articles/")
+      );
+    }
+    return pathname.startsWith(href);
+  };
 
   return (
-    <motion.nav
-      initial={{ y: -20, opacity: 0 }}
-      animate={{ y: 0, opacity: 1 }}
-      transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${isScrolled
-        ? "nav-glass py-4 shadow-sm"
-        : "bg-transparent py-6"
-        }`}
-    >
-      <div className="max-w-[1400px] mx-auto flex items-center justify-between px-6 md:px-12">
-        <Link
-          to="/"
-          className="font-display text-2xl md:text-3xl font-semibold tracking-tight text-primary hover:opacity-70 transition-opacity duration-300"
-        >
-          AM
-        </Link>
-
-        <div className="hidden md:flex items-center gap-12">
-          {navLinks.map((link) => (
-            <Link
-              key={link.href}
-              to={link.href}
-              onClick={() => setIsOpen(false)}
-              className="link-underline text-sm font-medium text-foreground/70 hover:text-accent transition-colors duration-300 tracking-wide"
-            >
-              {link.label}
-            </Link>
-          ))}
-          <a
-            href="https://www.linkedin.com/in/andiswa-masuku"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-foreground/70 hover:text-primary transition-colors duration-300 ml-2"
-            aria-label="LinkedIn Profile"
+    <>
+      {/* Top Header Bar */}
+      <motion.nav
+        initial={{ y: -20, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${isScrolled
+          ? "nav-glass py-4 shadow-sm"
+          : "bg-transparent py-5"
+          }`}
+      >
+        <div className="max-w-[1360px] mx-auto flex items-center justify-between px-6 md:px-10">
+          <Link
+            to="/"
+            className="font-display text-2xl md:text-3xl font-semibold tracking-tight text-primary hover:opacity-70 transition-opacity duration-300"
           >
-            <Linkedin size={18} strokeWidth={1.5} />
-          </a>
-        </div>
+            AM
+          </Link>
 
-        <div className="md:hidden">
-          <Sheet open={isOpen} onOpenChange={setIsOpen}>
-            <SheetTrigger
-              className="p-2 -mr-2 text-primary hover:opacity-70 transition-opacity"
-              aria-label="Open menu"
+          {/* Desktop Navigation Links */}
+          <div className="hidden md:flex items-center gap-12">
+            {navLinks.map((link) => (
+              <Link
+                key={link.href}
+                to={link.href}
+                onMouseEnter={() => prefetchRoute(link.href)}
+                onTouchStart={() => prefetchRoute(link.href)}
+                onFocus={() => prefetchRoute(link.href)}
+                className={`link-underline text-sm font-medium tracking-wide transition-colors duration-300 ${
+                  isLinkActive(link.href)
+                    ? "text-primary font-semibold"
+                    : "text-foreground/70 hover:text-accent"
+                }`}
+              >
+                {link.label}
+              </Link>
+            ))}
+            <a
+              href="https://www.linkedin.com/in/andiswa-masuku"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-foreground/70 hover:text-primary transition-colors duration-300 ml-2"
+              aria-label="LinkedIn Profile"
             >
-              <Menu size={24} strokeWidth={1.5} />
-            </SheetTrigger>
-            <SheetContent
-              side="right"
-              className="w-full sm:w-[400px] border-l border-border/50 bg-background p-8 flex flex-col"
+              <Linkedin size={18} strokeWidth={1.5} />
+            </a>
+          </div>
+
+          {/* Mobile Top-Right Actions */}
+          <div className="flex md:hidden items-center gap-2">
+            <a
+              href="https://www.linkedin.com/in/andiswa-masuku"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="p-2 text-foreground/70 hover:text-primary transition-colors"
+              aria-label="LinkedIn Profile"
             >
-              <div className="flex items-center justify-between mb-8 pb-4 border-b border-border/50">
-                <span className="font-display text-xl font-semibold uppercase tracking-widest text-muted-foreground/50">Menu</span>
-              </div>
-
-              <div className="flex flex-col h-full pt-8">
-                <nav className="flex flex-col gap-4">
-                  {navLinks.map((link, index) => (
-                    <motion.div
-                      key={link.href}
-                      initial={{ opacity: 0, x: 20 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      transition={{ delay: index * 0.05, duration: 0.3 }}
-                    >
-                      <Link
-                        to={link.href}
-                        onClick={() => setIsOpen(false)}
-                        className="font-display text-3xl text-primary hover:text-accent transition-colors py-2 block"
-                      >
-                        {link.label}
-                      </Link>
-                    </motion.div>
-                  ))}
-                </nav>
-
-                <div className="mt-auto py-8 border-t border-border/50">
-                  <a
-                    href="https://www.linkedin.com/in/andiswa-masuku"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-3 text-muted-foreground hover:text-accent transition-colors p-3 -ml-3"
-                  >
-                    <Linkedin size={24} strokeWidth={1.5} />
-                    <span className="text-lg font-medium tracking-wide">LinkedIn</span>
-                  </a>
-                </div>
-              </div>
-            </SheetContent>
-          </Sheet>
+              <Linkedin size={20} strokeWidth={1.5} />
+            </a>
+          </div>
         </div>
+      </motion.nav>
+
+      {/* PawZa-Inspired Bottom Floating Pill Navigation Dock (Mobile Reachability) */}
+      <div className="md:hidden fixed bottom-5 inset-x-0 mx-auto w-fit z-50 pointer-events-auto px-4">
+        <motion.nav
+          initial={{ y: 20, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ duration: 0.4, ease: "easeOut" }}
+          className="flex items-center gap-1 p-1.5 bg-white/95 dark:bg-card/95 backdrop-blur-2xl border border-slate-200/80 dark:border-white/15 shadow-2xl shadow-black/20 rounded-full"
+          aria-label="Mobile Navigation Dock"
+        >
+          {navLinks.map((link) => {
+            const active = isLinkActive(link.href);
+            const Icon = link.icon;
+            return (
+              <Link
+                key={link.href}
+                to={link.href}
+                onMouseEnter={() => prefetchRoute(link.href)}
+                onTouchStart={() => prefetchRoute(link.href)}
+                onFocus={() => prefetchRoute(link.href)}
+                className={`relative flex items-center gap-1.5 px-3.5 py-2 rounded-full text-xs transition-all duration-200 ${
+                  active
+                    ? "bg-slate-900 text-white font-semibold shadow-md dark:bg-white dark:text-slate-900"
+                    : "text-slate-600 dark:text-slate-400 hover:text-slate-950 dark:hover:text-white"
+                }`}
+              >
+                <Icon size={16} strokeWidth={active ? 2.2 : 1.7} />
+                <span className="text-[11px] tracking-tight">{link.label}</span>
+                {active && (
+                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 dark:bg-emerald-600 inline-block shrink-0 ml-0.5" />
+                )}
+              </Link>
+            );
+          })}
+        </motion.nav>
       </div>
-    </motion.nav>
+    </>
   );
 };
 

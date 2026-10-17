@@ -4,41 +4,41 @@
 
 @layer base {
   :root {
-    /* Professional Warm Neutrals */
-    --background: 40 30% 97%;
-    --foreground: 30 10% 18%;
+    /* Apple & Stripe Modern Clean Palette */
+    --background: 0 0% 100%;
+    --foreground: 222 47% 11%;
 
-    --card: 40 25% 95%;
-    --card-foreground: 30 10% 18%;
+    --card: 0 0% 100%;
+    --card-foreground: 222 47% 11%;
 
-    --popover: 40 30% 96%;
-    --popover-foreground: 30 10% 18%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 222 47% 11%;
 
-    /* Primary - Rich Warm Charcoal */
-    --primary: 30 12% 22%;
-    --primary-foreground: 40 30% 97%;
+    /* Primary - Sharp Slate 900 */
+    --primary: 222 47% 11%;
+    --primary-foreground: 0 0% 100%;
 
-    /* Secondary - Warm Cream */
-    --secondary: 35 20% 93%;
-    --secondary-foreground: 30 12% 22%;
+    /* Secondary - Crisp Slate 50/100 */
+    --secondary: 210 40% 96.5%;
+    --secondary-foreground: 222 47% 11%;
 
-    /* Muted - Soft Taupe */
-    --muted: 35 12% 88%;
-    --muted-foreground: 30 8% 50%;
+    /* Muted - Refined Slate */
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215 16% 47%;
 
-    /* NEW: Accent - Science Teal for visual excitement */
-    --accent: 168 65% 38%;
-    --accent-light: 168 55% 92%;
+    /* Accent - 10% Botanical Emerald (#059669) for 60/30/10 Rule */
+    --accent: 160 84% 31%;
+    --accent-light: 160 84% 95%;
     --accent-foreground: 0 0% 100%;
 
     --destructive: 0 72% 51%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 35 15% 88%;
-    --input: 35 12% 92%;
-    --ring: 168 65% 38%;
+    --border: 214 32% 91%;
+    --input: 214 32% 91%;
+    --ring: 160 84% 31%;
 
-    --radius: 0.75rem;
+    --radius: 0.875rem;
 
     /* Professional Animation Curves */
     --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
@@ -49,13 +49,13 @@
     --transition-slow: 0.6s var(--ease-out-expo);
     --transition-spring: 0.5s var(--ease-spring);
 
-    /* Professional Shadows - Subtle and Layered */
+    /* Apple & Stripe Multi-Layered Physical Shadows */
     --shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.04);
-    --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.06);
-    --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.08);
-    --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.10);
-    --shadow-xl: 0 16px 48px rgba(0, 0, 0, 0.12);
-    --shadow-accent: 0 8px 24px hsla(168, 65%, 38%, 0.15);
+    --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.04), 0 4px 12px rgba(0, 0, 0, 0.03);
+    --shadow-md: 0 4px 8px -1px rgba(0, 0, 0, 0.05), 0 12px 24px -3px rgba(0, 0, 0, 0.05);
+    --shadow-lg: 0 10px 25px -5px rgba(0, 0, 0, 0.06), 0 20px 48px -10px rgba(0, 0, 0, 0.07);
+    --shadow-xl: 0 20px 35px -5px rgba(0, 0, 0, 0.08), 0 30px 60px -15px rgba(0, 0, 0, 0.10);
+    --shadow-accent: 0 10px 30px -5px rgba(5, 150, 105, 0.2);
 
     /* Typography Scale */
     --hero-headline: clamp(2.5rem, 6vw, 5rem);
@@ -71,6 +71,7 @@
   }
 
   html {
+    background-color: #ffffff;
     scroll-behavior: smooth;
     scroll-padding-top: 5rem;
     -webkit-font-smoothing: antialiased;
@@ -78,20 +79,19 @@
   }
 
   body {
+    background-color: #ffffff;
     @apply bg-background text-foreground;
     font-family: 'Inter', system-ui, sans-serif;
     font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
-    text-align: justify;
-    hyphens: auto;
   }
 
-  p {
-    text-align: justify;
-    hyphens: auto;
+  #root {
+    background-color: #ffffff;
+    min-height: 100vh;
   }
 
   ::selection {
-    background: hsl(168, 65%, 38%);
+    background: hsl(160, 84%, 31%);
     color: white;
   }
 
@@ -120,29 +120,13 @@
     letter-spacing: -0.02em;
   }
 
-  .headline-secondary {
-    font-family: 'Cormorant Garamond', Georgia, serif;
-    font-size: var(--section-title);
-    line-height: 1.2;
-    font-weight: 600;
-    letter-spacing: -0.01em;
-  }
-
   .body-text {
     font-family: 'Inter', system-ui, sans-serif;
     font-size: 1.125rem;
     line-height: 1.7;
     letter-spacing: 0.01em;
     text-align: justify;
-  }
-
-  .caption-luxury {
-    font-family: 'Inter', system-ui, sans-serif;
-    font-size: 0.75rem;
-    text-transform: uppercase;
-    letter-spacing: 0.15em;
-    font-weight: 400;
-    @apply text-muted-foreground;
+    hyphens: auto;
   }
 
   .label-spec {
@@ -156,56 +140,11 @@
 
   /* Accent highlight text */
   .text-accent {
-    color: hsl(168, 65%, 38%);
+    color: hsl(160, 84%, 31%);
   }
 
   .bg-accent {
-    background: hsl(168, 65%, 38%);
-  }
-
-  .bg-accent-light {
-    background: hsl(168, 55%, 92%);
-  }
-
-  /* Professional Card Styles with enhanced hover */
-  .card-professional {
-    @apply bg-card rounded-xl border border-border/50;
-    box-shadow: var(--shadow-sm);
-    transition: all var(--transition-smooth);
-    position: relative;
-    overflow: hidden;
-  }
-
-  .card-professional::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 3px;
-    background: linear-gradient(90deg, hsl(168, 65%, 38%), hsl(168, 45%, 55%));
-    transform: scaleX(0);
-    transform-origin: left;
-    transition: transform var(--transition-smooth);
-  }
-
-  .card-professional:hover {
-    box-shadow: var(--shadow-lg);
-    transform: translateY(-4px);
-    border-color: hsl(168, 65%, 38%, 0.3);
-  }
-
-  .card-professional:hover::before {
-    transform: scaleX(1);
-  }
-
-  /* Gradient backgrounds for sections */
-  .section-gradient {
-    background: linear-gradient(180deg, hsl(40, 30%, 97%) 0%, hsl(168, 55%, 97%) 100%);
-  }
-
-  .section-gradient-reverse {
-    background: linear-gradient(180deg, hsl(168, 55%, 97%) 0%, hsl(40, 30%, 97%) 100%);
+    background: hsl(160, 84%, 31%);
   }
 
   /* Animated underline for links */
@@ -277,100 +216,23 @@
     transform: translateY(-2px);
   }
 
-  /* Navigation glassmorphism on scroll */
+  /* Navigation glassmorphism on scroll (Apple Frosted Acrylic) */
   .nav-glass {
-    backdrop-filter: blur(16px) saturate(180%);
-    background: rgba(250, 248, 245, 0.9);
-    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
-  }
-
-  /* Section dividers with accent */
-  .section-divider {
-    @apply h-px w-full;
-    background: linear-gradient(90deg, transparent, hsl(168, 65%, 38%, 0.3), transparent);
-  }
-
-  /* Floating animation for visual interest */
-  @keyframes float {
-
-    0%,
-    100% {
-      transform: translateY(0px);
-    }
-
-    50% {
-      transform: translateY(-10px);
-    }
-  }
-
-  .animate-float {
-    animation: float 6s ease-in-out infinite;
-  }
-
-  /* Pulse glow effect */
-  @keyframes pulse-glow {
-
-    0%,
-    100% {
-      box-shadow: 0 0 0 0 hsla(168, 65%, 38%, 0.4);
-    }
-
-    50% {
-      box-shadow: 0 0 20px 10px hsla(168, 65%, 38%, 0.1);
-    }
-  }
-
-  .animate-pulse-glow {
-    animation: pulse-glow 3s ease-in-out infinite;
+    backdrop-filter: blur(20px) saturate(180%);
+    background: rgba(255, 255, 255, 0.88);
+    border-bottom: 1px solid rgba(226, 232, 240, 0.8);
   }
 
   /* Gradient text */
   .gradient-text {
-    background: linear-gradient(135deg, hsl(30, 12%, 22%) 0%, hsl(168, 65%, 38%) 100%);
+    background: linear-gradient(135deg, hsl(222, 47%, 11%) 0%, hsl(160, 84%, 39%) 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
   }
-
-  /* Image container with overlay on hover */
-  .img-container {
-    position: relative;
-    overflow: hidden;
-    border-radius: var(--radius);
-  }
-
-  .img-container img {
-    transition: transform var(--transition-slow);
-  }
-
-  .img-container:hover img {
-    transform: scale(1.05);
-  }
-
-  .img-container::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(to top, hsla(168, 65%, 38%, 0.2), transparent);
-    opacity: 0;
-    transition: opacity var(--transition-smooth);
-  }
-
-  .img-container:hover::after {
-    opacity: 1;
-  }
 }
 
 @layer utilities {
-
-  /* Offset utilities */
-  .offset-left {
-    margin-left: -3vw;
-  }
-
-  .offset-right {
-    margin-right: -3vw;
-  }
 
   /* Text balance for headings */
   .text-balance {

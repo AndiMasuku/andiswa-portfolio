@@ -1,7 +1,6 @@
 import { motion } from "framer-motion";
 import { Linkedin } from "lucide-react";
 import andiswaPortrait from "@/assets/andiswa-hero.webp";
-import { EMAIL_HREF, openEmail } from "@/lib/email";
 
 const HeroSection = () => {
   return (
@@ -21,29 +20,29 @@ const HeroSection = () => {
       <div className="max-w-[1400px] mx-auto px-6 md:px-12 h-full relative z-10 flex flex-col justify-end lg:justify-center min-h-[90vh] lg:min-h-screen pb-12 lg:pb-0 pt-20 lg:pt-0">
         <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-10 lg:gap-16">
 
-          <div className="lg:w-[55%] order-2 lg:order-1 space-y-8 mt-auto lg:mt-0">
+          <div className="lg:w-[55%] order-2 lg:order-1 space-y-6 mt-auto lg:mt-0">
 
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
             >
-              <span className="label-spec text-accent block mb-4">
-                Biological Sciences Researcher
-              </span>
               <h1 className="headline-primary gradient-text text-balance">
                 Andiswa Masuku
               </h1>
+              <p className="font-display text-xl md:text-2xl text-accent font-semibold mt-2">
+                MSc Biological Sciences
+              </p>
             </motion.div>
 
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.25, ease: [0.16, 1, 0.3, 1] }}
-              className="max-w-xl"
+              className="max-w-lg"
             >
               <p className="body-text text-muted-foreground leading-relaxed">
-                Bridging the gap between ecological research and sustainable development with data-driven scientific insights.
+                Applying quantitative modelling and empirical biology to solve complex environmental and resource challenges across Southern Africa.
               </p>
             </motion.div>
 
@@ -51,17 +50,21 @@ const HeroSection = () => {
               initial={{ opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 0.35, ease: [0.16, 1, 0.3, 1] }}
-              className="flex flex-wrap gap-3"
+              className="flex flex-wrap gap-2.5"
             >
-              {["Spatial Analysis (GIS)", "Marine Ecology", "R Programming", "Conservation Science", "Data Modelling", "Food Development"].map((area, index) => (
+              {[
+                "Climate & Biodiversity",
+                "Spatial Telemetry (GIS)",
+                "Sustainable Food Systems",
+              ].map((domain, index) => (
                 <motion.span
-                  key={area}
-                  initial={{ opacity: 0, scale: 0.8 }}
+                  key={domain}
+                  initial={{ opacity: 0, scale: 0.92 }}
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ delay: 0.4 + index * 0.05, duration: 0.4 }}
                   className="skill-tag cursor-default"
                 >
-                  {area}
+                  {domain}
                 </motion.span>
               ))}
             </motion.div>
@@ -70,14 +73,13 @@ const HeroSection = () => {
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.5, ease: [0.16, 1, 0.3, 1] }}
-              className="flex flex-wrap items-center gap-4 pt-4"
+              className="flex flex-wrap items-center gap-4 pt-2"
             >
               <a
-                href={EMAIL_HREF}
-                onClick={openEmail}
-                className="btn-professional group min-w-[160px]"
+                href="#research"
+                className="btn-professional group min-w-[170px]"
               >
-                Get in Touch
+                Explore Research
                 <svg className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                 </svg>
@@ -86,24 +88,12 @@ const HeroSection = () => {
                 href="https://www.linkedin.com/in/andiswa-masuku"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="btn-outline group min-w-[160px]"
+                aria-label="Andiswa Masuku on LinkedIn"
+                className="btn-outline group min-w-[150px]"
               >
                 <Linkedin size={16} strokeWidth={2} className="mr-2" />
                 LinkedIn
               </a>
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.6, delay: 0.6 }}
-              className="flex items-center gap-3 text-sm text-muted-foreground pt-2"
-            >
-              <span className="flex items-center gap-2">
-                <span className="w-2 h-2 rounded-full bg-accent animate-pulse"></span>
-                Available for opportunities
-              </span>
-
             </motion.div>
           </div>
 
@@ -116,7 +106,7 @@ const HeroSection = () => {
             <div className="relative rounded-2xl overflow-hidden" style={{ boxShadow: 'var(--shadow-xl)' }}>
               <img
                 src={andiswaPortrait}
-                alt="Andiswa Masuku - Professional Biological Sciences Researcher Portait"
+                alt="Andiswa Masuku - Professional Biological Sciences Researcher Portrait"
                 loading="eager"
                 decoding="async"
                 fetchPriority="high"

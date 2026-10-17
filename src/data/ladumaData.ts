@@ -12,13 +12,61 @@
 
 import rawCsv from "/Laduma rxy.csv?raw";
 
+export type ClusterKey = "cape-peninsula-south" | "fynbos-core" | "urban-suburban";
+
+export const CLUSTER_META: Record<
+    ClusterKey,
+    { label: string; color: string; description: string }
+> = {
+    "cape-peninsula-south": {
+        label: "Cape Peninsula South",
+        color: "#ef4444",
+        description: "Points south of −34.0° latitude (coastal / peninsula tip)",
+    },
+    "fynbos-core": {
+        label: "Fynbos Core",
+        color: "#f97316",
+        description:
+            "Points between −34.0° and −33.96° latitude (Table Mountain fynbos belt)",
+    },
+    "urban-suburban": {
+        label: "Urban / Suburban",
+        color: "#14b8a6",
+        description:
+            "Points north of −33.96° latitude (suburban Cape Town fringe)",
+    },
+};
+
+export const summary = {
+    totalCsvRows: 2160,
+    validPoints: 2160,
+    skippedCount: 0,
+    lonRange: {
+        min: 18.351587,
+        max: 18.469457,
+    },
+    latRange: {
+        min: -34.098462,
+        max: -33.916255,
+    },
+    centroid: {
+        lon: 18.42970189490745,
+        lat: -33.975989687499975,
+    },
+    clusterCounts: {
+        "cape-peninsula-south": 596,
+        "fynbos-core": 380,
+        "urban-suburban": 1184,
+    },
+};
+
 // ---------- Types ----------
 
 export interface LadumaPoint {
     rowname: string;
     longitude: number;
     latitude: number;
-    cluster: "cape-peninsula-south" | "fynbos-core" | "urban-suburban";
+    cluster: ClusterKey;
 }
 
 export interface SkippedRow {
@@ -27,34 +75,9 @@ export interface SkippedRow {
     reason: string;
 }
 
-export type ClusterKey = LadumaPoint["cluster"];
-
-export const CLUSTER_META: Record<
-    ClusterKey,
-    { label: string; color: string; description: string }
-> = {
-    "cape-peninsula-south": {
-        label: "Cape Peninsula South",
-        color: "#ef4444", // red-500
-        description: "Points south of −34.0° latitude (coastal / peninsula tip)",
-    },
-    "fynbos-core": {
-        label: "Fynbos Core",
-        color: "#f97316", // orange-500
-        description:
-            "Points between −34.0° and −33.96° latitude (Table Mountain fynbos belt)",
-    },
-    "urban-suburban": {
-        label: "Urban / Suburban",
-        color: "#14b8a6", // teal-500
-        description:
-            "Points north of −33.96° latitude (suburban Cape Town fringe)",
-    },
-};
-
 // ---------- Parsing ----------
 
-function classifyPoint(lat: number): LadumaPoint["cluster"] {
+function classifyPoint(lat: number): ClusterKey {
     if (lat < -34.0) return "cape-peninsula-south";
     if (lat < -33.96) return "fynbos-core";
     return "urban-suburban";
@@ -75,7 +98,6 @@ function parseCsv(raw: string): {
     // Skip header (line index 0)
     for (let i = 1; i < lines.length; i++) {
         const line = lines[i];
-        // Some lines have trailing data after ;;; (e.g. line 3 has a trailing ID)
         const parts = line.split(",");
 
         if (parts.length < 3) {
@@ -124,38 +146,9 @@ function parseCsv(raw: string): {
     return { points, skipped };
 }
 
-// ---------- Exported data (parsed once at module load) ----------
+// ---------- Exported data (parsed once when map chunk loads) ----------
 
 const { points, skipped } = parseCsv(rawCsv);
 
 export const ladumaPoints: LadumaPoint[] = points;
 export const skippedRows: SkippedRow[] = skipped;
-
-// Summary stats
-export const summary = {
-    totalCsvRows: rawCsv.split(/\r?\n/).filter((l) => l.trim().length > 0).length - 1,
-    validPoints: points.length,
-    skippedCount: skipped.length,
-    lonRange: {
-        min: Math.min(...points.map((p) => p.longitude)),
-        max: Math.max(...points.map((p) => p.longitude)),
-    },
-    latRange: {
-        min: Math.min(...points.map((p) => p.latitude)),
-        max: Math.max(...points.map((p) => p.latitude)),
-    },
-    centroid: {
-        lon:
-            points.reduce((s, p) => s + p.longitude, 0) / (points.length || 1),
-        lat:
-            points.reduce((s, p) => s + p.latitude, 0) / (points.length || 1),
-    },
-    clusterCounts: {
-        "cape-peninsula-south": points.filter(
-            (p) => p.cluster === "cape-peninsula-south"
-        ).length,
-        "fynbos-core": points.filter((p) => p.cluster === "fynbos-core").length,
-        "urban-suburban": points.filter((p) => p.cluster === "urban-suburban")
-            .length,
-    },
-};
