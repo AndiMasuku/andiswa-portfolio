@@ -3,7 +3,6 @@ import thesisImage from "@/assets/thesis-research.webp";
 import marineConservation from "@/assets/marine-conservation.webp";
 import dnaForensics from "@/assets/dna-forensics.webp";
 import africanZoology from "@/assets/african-zoology.webp";
-import labDemonstrator from "@/assets/lab-demonstrator.webp";
 import comparativeBiochemistry from "@/assets/comparative-biochemistry.webp";
 import climateChange from "@/assets/climate-change-research.webp";
 import sustainability from "@/assets/project-sustainability.webp";
@@ -137,18 +136,6 @@ export const allResearchAreas: ResearchItem[] = [
         skills: ["Animal Behaviour", "Taxonomy", "Ecology"],
         link: "/projects/articles/african-zoology",
         institution: "Wits University",
-    },
-    {
-        id: "demonstrator",
-        title: "Biology Demonstrating",
-        subtitle: "UKZN Westville • Practical Mentorship",
-        categoryBadge: "Mentorship",
-        image: labDemonstrator,
-        description:
-            "Guided first-year biology students through lab practicals, invigilated tests, and marked practical assessments.",
-        skills: ["Teaching", "Assessment", "Mentorship"],
-        link: "/projects/articles/lab-demonstrator",
-        institution: "UKZN Westville",
     },
     {
         id: "climate",
